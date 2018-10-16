@@ -8,10 +8,14 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  SectionList,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { Font } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+
+import Schedule from '../components/Schedule';
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from "react-native-underline-tabbar";
@@ -21,27 +25,42 @@ import TabBar from "react-native-underline-tabbar";
 //   width: Dimensions.get('window').width,
 // };
 
-const Page = ({label}) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      {label}
-    </Text>
-    <Text style={styles.instructions}>
-      To get started, edit index.ios.js
-    </Text>
-    <Text style={styles.instructions}>
-      Press Cmd+R to reload,{'\n'}
-      Cmd+D or shake for dev menu
-    </Text>
-  </View>
-);
+// state = {
+//   fontLoaded: false,
+// };
+
+// const Page = ({label}) => (
+//   <View style={styles.container}>
+//     <Text style={styles.instructions}>
+//       To get started, edit index.ios.js
+//     </Text>
+//     <Text style={styles.instructions}>
+//       Press Cmd+R to reload,{'\n'}
+//       Cmd+D or shake for dev menu
+//     </Text>
+
+//     <SectionList
+//       renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
+//       renderSectionHeader={({section: {title}}) => (
+//         this.state.fontLoaded ? (
+//         <Text style={{fontFamily: 'open-sans-regular',fontSize: 14,fontWeight: 'bold'}}>{title}</Text>
+//         ) : <Text style={{fontSize: 24,fontWeight: 'bold'}}>{title}</Text>
+//       )}
+//       sections={[
+//         {title: 'Maandag 10 September 2018', data: ['09:00 - 11:00', 'Kernmodule']},
+//         {title: 'Title2', data: ['item3', 'item4']},
+//         {title: 'Title3', data: ['item5', 'item6']},
+//       ]}
+//       keyExtractor={(item, index) => item + index}
+//     />
+//   </View>
+// );
 
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
   render() {
     return (
       <View style={styles.container}>
@@ -66,16 +85,16 @@ export default class HomeScreen extends React.Component {
                 tabMargin= {13}
                 tabBarTextStyle={{fontSize:18,}}
                 />}>
-            <Page tabLabel={{label: "    1    "}} label="1"/>
-            <Page tabLabel={{label: "    2    "}} label="Page #2 aka Long!"/>
-            <Page tabLabel={{label: "    3    "}} label="Page #3"/>
-            <Page tabLabel={{label: "    4    "}} label="Page #4 aka Page"/>
-            <Page tabLabel={{label: "    5    "}} label="Page #5"/>
-            <Page tabLabel={{label: "    6    "}} label="1"/>
-            <Page tabLabel={{label: "    7    "}} label="Page #2 aka Long!"/>
-            <Page tabLabel={{label: "    8    "}} label="Page #3"/>
-            <Page tabLabel={{label: "    9    "}} label="Page #4 aka Page"/>
-            <Page tabLabel={{label: "    10   "}} label="Page #5"/>
+            <Schedule tabLabel={{label: "    1    "}} name="10"/>
+            <Schedule tabLabel={{label: "    2    "}} name="17"/>
+            <Schedule tabLabel={{label: "    3    "}} label="3"/>
+            <Schedule tabLabel={{label: "    4    "}} label="4"/>
+            <Schedule tabLabel={{label: "    5    "}} label="5"/>
+            <Schedule tabLabel={{label: "    6    "}} label="6"/>
+            <Schedule tabLabel={{label: "    7    "}} label="7"/>
+            <Schedule tabLabel={{label: "    8    "}} label="8"/>
+            <Schedule tabLabel={{label: "    9    "}} label="9"/>
+            <Schedule tabLabel={{label: "    10   "}} label="10"/>
           </ScrollableTabView>
         </View>
         </ScrollView>
@@ -83,44 +102,20 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
+    });
 
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
+    this.setState({ fontLoaded: true });
   }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
   },
   developmentModeText: {
     marginBottom: 20,
