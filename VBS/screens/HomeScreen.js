@@ -13,53 +13,33 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import TabBar from "react-native-underline-tabbar";
 
-const FirstRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#ff4081'}]}>aaaaaa</View>
+// const initialLayout = {
+//   height: 0,
+//   width: Dimensions.get('window').width,
+// };
+
+const Page = ({label}) => (
+  <View style={styles.container}>
+    <Text style={styles.welcome}>
+      {label}
+    </Text>
+    <Text style={styles.instructions}>
+      To get started, edit index.ios.js
+    </Text>
+    <Text style={styles.instructions}>
+      Press Cmd+R to reload,{'\n'}
+      Cmd+D or shake for dev menu
+    </Text>
+  </View>
 );
-
-const SecondRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#673ab7'}]}>bbbbbbb</View>
-);
-
-const ThirdRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#ff4081'}]}>aaaaaa</View>
-);
-
-const FourthRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#673ab7'}]}>bbbbbbb</View>
-);
-
-const FifthRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#ff4081'}]}>aaaaaa</View>
-);
-
-const SixthRoute = () => (
-  <View style={[styles.container,{backgroundColor:'#673ab7'}]}>bbbbbbb</View>
-);
-
-const initialLayout = {
-  height: 0,
-  width: Dimensions.get('window').width,
-};
 
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
-  };
-
-  state = {
-    index: 0,
-    routes: [
-      { key:'first', title:'1' },
-      { key:'second', title:'2' },
-      { key:'third', title:'3' },
-      { key:'fourth', title:'4' },
-      { key:'fifth', title:'5' },
-      { key:'sixth', title:'6' },
-    ],
   };
 
   render() {
@@ -76,24 +56,29 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
-          <TabView
-            navigationState={this.state}
-            renderScene={SceneMap({
-              first: FirstRoute,
-              second: SecondRoute,
-              third: ThirdRoute,
-              fourth: FourthRoute,
-              fifth: FifthRoute,
-              sixth: SixthRoute,
-            })}
-            onIndexChange={index => this.setState({ index })}
-            initialLayout={initialLayout}
-            style={styles.tabBar}
-          />
+          <Text style={{marginLeft:23,}}>Week</Text>
+          <View style={[styles.container, {paddingTop: 0}]}>
+          <ScrollableTabView
+              tabBarActiveTextColor="blue"
+              renderTabBar={() => <TabBar 
+                underlineColor="blue"
+                underlineHeight= {3}
+                tabMargin= {13}
+                tabBarTextStyle={{fontSize:18,}}
+                />}>
+            <Page tabLabel={{label: "    1    "}} label="1"/>
+            <Page tabLabel={{label: "    2    "}} label="Page #2 aka Long!"/>
+            <Page tabLabel={{label: "    3    "}} label="Page #3"/>
+            <Page tabLabel={{label: "    4    "}} label="Page #4 aka Page"/>
+            <Page tabLabel={{label: "    5    "}} label="Page #5"/>
+            <Page tabLabel={{label: "    6    "}} label="1"/>
+            <Page tabLabel={{label: "    7    "}} label="Page #2 aka Long!"/>
+            <Page tabLabel={{label: "    8    "}} label="Page #3"/>
+            <Page tabLabel={{label: "    9    "}} label="Page #4 aka Page"/>
+            <Page tabLabel={{label: "    10   "}} label="Page #5"/>
+          </ScrollableTabView>
+        </View>
         </ScrollView>
-
-        
       </View>
     );
   }
@@ -133,9 +118,6 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: '#fff',
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
