@@ -2,8 +2,9 @@ const tintColor = '#2f95dc';
 
 export default {
   tintColor,
-  tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
+  tabIconDefault: '#8E8E93',
+  VBSBlue: '#27428C',
+  tabIconSelected: '#0066CC',
   tabBar: '#fefefe',
   errorBackground: 'red',
   errorText: '#fff',
