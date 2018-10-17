@@ -119,6 +119,54 @@ export default class Schedule extends React.Component {
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
             </View>
+
+            <View style={styles.day}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>Donderdag 13 September</Text>
+                </View>
+                <View style={styles.line}></View>
+                <View style={styles.item}>
+                    <Text style={styles.time}>09:00-11:00</Text>
+                    <View style={styles.lessonTeacher}>
+                        <Text style={styles.lesson}>Kernmodule Business Case</Text>
+                        <Text style={styles.teacher}>W.van Gerwen</Text>
+                    </View>
+                    <Text style={styles.place}>Utrecht</Text>
+                </View>
+                <View style={styles.line2}></View>
+                <View style={styles.item}>
+                    <Text style={styles.time}>11:00-13:00</Text>
+                    <View style={styles.lessonTeacher}>
+                        <Text style={styles.lesson}>Vastgoedwaarde</Text>
+                        <Text style={styles.teacher}>P.Pieters</Text>
+                    </View>
+                    <Text style={styles.place}>Utrecht</Text>
+                </View>
+            </View>
+
+            <View style={styles.day}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>Vrijdag 14 September</Text>
+                </View>
+                <View style={styles.line}></View>
+                <View style={styles.item}>
+                    <Text style={styles.time}>09:00-11:00</Text>
+                    <View style={styles.lessonTeacher}>
+                        <Text style={styles.lesson}>Kernmodule Business Case</Text>
+                        <Text style={styles.teacher}>W.van Gerwen</Text>
+                    </View>
+                    <Text style={styles.place}>Utrecht</Text>
+                </View>
+                <View style={styles.line2}></View>
+                <View style={styles.item}>
+                    <Text style={styles.time}>11:00-13:00</Text>
+                    <View style={styles.lessonTeacher}>
+                        <Text style={styles.lesson}>Vastgoedwaarde</Text>
+                        <Text style={styles.teacher}>P.Pieters</Text>
+                    </View>
+                    <Text style={styles.place}>Utrecht</Text>
+                </View>
+            </View>
       </View>
     );
   }
@@ -127,21 +175,27 @@ export default class Schedule extends React.Component {
 
 const styles = StyleSheet.create({
     line: {
-        backgroundColor:'#707070',
+        backgroundColor:'#C3C1C1',
         height: 0.5,
     },
     line2: {
-        backgroundColor:'#707070',
+        backgroundColor:'#C3C1C1',
         height: 0.5,
         marginHorizontal: 12,
     },
     day:{
         backgroundColor: 'white',
+        borderRadius:10,
+        borderWidth: 0.5,
+        borderColor: '#C3C1C1',
         display: 'flex',
         flexDirection: 'column',
         marginTop:5,
         marginLeft:5,
         marginRight:5,
+        overflow: 'hidden',
+        
+        
     },
     header:{
         backgroundColor: 'white',

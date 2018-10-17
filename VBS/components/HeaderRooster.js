@@ -54,8 +54,13 @@ const styles = StyleSheet.create({
     rooster: {
     fontSize:20, 
     fontFamily: 'open-sans-semi-bold',
-    marginLeft:23,
+    marginLeft:0,
+    //marginTop:43,
     color:Colors.VBSBlue,
     textAlign:"center",
     },
+    container: {
+        backgroundColor:'white',
+        paddingTop: 40,
+    }
 });
