@@ -47,18 +47,19 @@ export default class HomeScreen extends React.Component {
       }
     return (
       <View style={styles.container}>
+        <HeaderRooster/>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <HeaderRooster/>
-          <View style={[styles.container, {paddingTop: 0}]}>
           <ScrollableTabView
               tabBarActiveTextColor= {Colors.VBSBlue}
+              tabBarUnderlineStyle= {'red'}
+              tabBarPosition={"top"}
               renderTabBar={() => <TabBar 
                 underlineColor={Colors.VBSBlue}
                 underlineHeight= {3}
                 tabMargin= {13}
                 tabBarTextStyle={{fontSize:18, fontFamily: 'open-sans-regular'}}
                 />}>
-            <Schedule tabLabel={{label: "    1    "}} name="10"/>
+            <Schedule tabLabel={{label: "    1    "}} name="1"/>
             <Schedule tabLabel={{label: "    2    "}} name="17"/>
             <Schedule tabLabel={{label: "    3    "}} label="3"/>
             <Schedule tabLabel={{label: "    4    "}} label="4"/>
@@ -69,23 +70,12 @@ export default class HomeScreen extends React.Component {
             <Schedule tabLabel={{label: "    9    "}} label="9"/>
             <Schedule tabLabel={{label: "    10   "}} label="10"/>
           </ScrollableTabView>
-        </View>
         </ScrollView>
       </View>
     );
   }
 }
-
-
 const styles = StyleSheet.create({
-rooster: {
-  fontSize:20, 
-  fontFamily: 'open-sans-semi-bold',
-  marginLeft:23,
-  color:Colors.VBSBlue,
-  textAlign:"center",
-},
-
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -98,7 +88,7 @@ rooster: {
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    //paddingTop: 30,
   },
   welcomeContainer: {
     alignItems: 'center',
