@@ -3,15 +3,19 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import RoosterScreen from '../screens/RoosterScreen';
+import BerichtenScreen from '../screens/BerichtenScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+import { MaterialIcons } from '@expo/vector-icons';
+
+import Colors from '../constants/Colors';
+
+const RoosterStack = createStackNavigator({
+  Rooster: RoosterScreen,
 });
 
-HomeStack.navigationOptions = {
+RoosterStack.navigationOptions = {
   tabBarLabel: 'Rooster',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -25,16 +29,18 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const BerichtenStack = createStackNavigator({
+  Berichten: BerichtenScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+BerichtenStack.navigationOptions = {
+  tabBarLabel: 'Berichten',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
+    <MaterialIcons
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      size={30}
+      name={Platform.OS === 'ios' ? `chat-bubble${focused ? '-outline' : '-outline'}` : 'md-link'}
+      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   ),
 };
@@ -54,7 +60,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
+  RoosterStack,
+  BerichtenStack,
   SettingsStack,
 });

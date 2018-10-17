@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     fontSize:20, 
     fontFamily: 'open-sans-semi-bold',
     marginLeft:0,
-    //marginTop:43,
     color:Colors.VBSBlue,
     textAlign:"center",
     },

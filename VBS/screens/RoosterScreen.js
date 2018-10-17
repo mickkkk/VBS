@@ -22,7 +22,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from "react-native-underline-tabbar";
 import Colors from '../constants/Colors';
 
-export default class HomeScreen extends React.Component {
+export default class RoosterScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {fontLoaded: false};
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    //paddingTop: 30,
+    //paddingTop: -10,
   },
   welcomeContainer: {
     alignItems: 'center',
