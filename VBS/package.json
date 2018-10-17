@@ -24,8 +24,5 @@
   },
   "devDependencies": {
     "jest-expo": "30.0.0"
-  },
-  "rnpm": {
-    "assets": "./assets/fonts"
   }
 }

@@ -24,20 +24,33 @@ import TabBar from "react-native-underline-tabbar";
 //   width: Dimensions.get('window').width,
 // };
 export default class Schedule extends React.Component {
-  static navigationOptions = {
+  
+    static navigationOptions = {
     header: null,
   };
   state = {
     fontLoaded: false,
   };
 
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
+      'open-sans-bold': require('../assets/fonts/OpenSans-Bold.ttf'),
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
+    if (!this.state.fontLoaded) {
+    return <Expo.AppLoading />;
+    }
     return (
         <View style={styles.container}>
             {/* <Text>Week {this.props.name}!</Text> */}
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Maandag {this.props.name} September</Text>
+                    <Text style={styles.headerText}>Maandag 10 September</Text>
                 </View>
                 <View style={styles.line}></View>
                 <View style={styles.item}>
@@ -61,7 +74,7 @@ export default class Schedule extends React.Component {
 
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Dinsdag {{this.props.name +1}} September</Text>
+                    <Text style={styles.headerText}>Dinsdag 11 September</Text>
                 </View>
                 <View style={styles.line}></View>
                 <View style={styles.item}>
@@ -109,14 +122,6 @@ export default class Schedule extends React.Component {
       </View>
     );
   }
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
-    });
-
-    this.setState({ fontLoaded: true });
-  }
 }
 
 
@@ -147,6 +152,7 @@ const styles = StyleSheet.create({
         color: Colors.VBSBlue,
         fontWeight: 'bold',
         fontSize: 14,
+        fontFamily: 'open-sans-bold',
     },
     item:{
         backgroundColor: 'white',
@@ -158,14 +164,30 @@ const styles = StyleSheet.create({
         //paddingHorizontal: 0,
     },
     time: {
-        fontSize:12,
+        fontSize:11,
         marginLeft: 12,
+        marginTop:11,
+        fontFamily: 'open-sans-regular',
+        color:Colors.VBSBlue,
         //flexGrow:1,
+    },
+    lesson: {
+        fontFamily: 'open-sans-regular',
+        fontSize: 14,
+        color:Colors.VBSBlue,
+    },
+    teacher: {
+        fontFamily: 'open-sans-regular',
+        fontSize: 11,
     },
     place: {
         position: 'absolute',
         right:12,
         top: 20,
+        fontFamily: 'open-sans-regular',
+        fontSize: 11,
+        color:Colors.VBSBlue,
+        marginTop:11,
         //backgroundColor: 'yellow',
         
         //marginRight: 12,
