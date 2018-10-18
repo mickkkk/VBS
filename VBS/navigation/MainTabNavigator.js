@@ -61,7 +61,7 @@ MijnOpleidingStack.navigationOptions = {
 };
 
 const AccountStack = createStackNavigator({
-  MijnOpleiding: MijnOpleidingScreen,
+  Account: AccountScreen,
 });
 
 AccountStack.navigationOptions = {

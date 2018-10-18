@@ -15,8 +15,8 @@ import { Font } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-import Schedule from '../components/Schedule';
-import HeaderRooster from '../components/HeaderRooster';
+import Schedule from '../components/Rooster/Schedule';
+import HeaderRooster from '../components/Rooster/HeaderRooster';
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from "react-native-underline-tabbar";

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import HeaderBerichten from '../components/HeaderBerichten';
+import HeaderBerichten from '../components/Berichten/HeaderBerichten';
 import {View} from 'react-native';
 import Colors from '../constants/Colors';
 
