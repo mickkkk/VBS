@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { Font } from 'expo';
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../StyledText';
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from "react-native-underline-tabbar";
@@ -34,8 +34,8 @@ export default class Schedule extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
-      'open-sans-bold': require('../assets/fonts/OpenSans-Bold.ttf'),
+      'open-sans-regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
+      'open-sans-bold': require('../../assets/fonts/OpenSans-Bold.ttf'),
     });
 
     this.setState({ fontLoaded: true });
