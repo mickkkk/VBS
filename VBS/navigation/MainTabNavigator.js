@@ -5,9 +5,10 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import RoosterScreen from '../screens/RoosterScreen';
 import BerichtenScreen from '../screens/BerichtenScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MijnOpleidingScreen from '../screens/MijnOpleidingScreen';
+import AccountScreen from '../screens/AccountScreen';
 
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
@@ -45,12 +46,12 @@ BerichtenStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const MijnOpleidingStack = createStackNavigator({
+  MijnOpleiding: MijnOpleidingScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+MijnOpleidingStack.navigationOptions = {
+  tabBarLabel: 'MijnOpleiding',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -59,8 +60,25 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const AccountStack = createStackNavigator({
+  MijnOpleiding: MijnOpleidingScreen,
+});
+
+AccountStack.navigationOptions = {
+  tabBarLabel: 'Account',
+  tabBarIcon: ({ focused }) => (
+    <MaterialCommunityIcons
+      focused={focused}
+      size={35}
+      name={Platform.OS === 'ios' ? `account${focused ? '-outline' : '-outline'}` : 'md-link'}
+      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   RoosterStack,
   BerichtenStack,
-  SettingsStack,
+  MijnOpleidingStack,
+  AccountStack,
 });

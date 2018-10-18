@@ -33,11 +33,15 @@ export default class RoosterScreen extends React.Component {
   };
 
   async componentDidMount() {
-    await Font.loadAsync({
-      'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
-      'open-sans-semi-bold': require('../assets/fonts/OpenSans-SemiBold.ttf'),
-    });
-    this.setState({ fontLoaded: true });
+    try {
+      await Font.loadAsync({
+        'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
+        'open-sans-semi-bold': require('../assets/fonts/OpenSans-SemiBold.ttf'),
+      });
+      this.setState({ fontLoaded: true });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   
@@ -49,6 +53,7 @@ export default class RoosterScreen extends React.Component {
       <View style={styles.container}>
         <HeaderRooster/>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <Text style={{fontSize:14, fontFamily: 'open-sans-regular',marginLeft:23,}}>Week</Text>
           <ScrollableTabView
               tabBarActiveTextColor= {Colors.VBSBlue}
               tabBarUnderlineStyle= {'red'}

@@ -1,19 +1,31 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
-import HeaderBerichten from '../components/HeaderBerichten';
-import {View} from 'react-native';
+import {
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+  SectionList,
+} from 'react-native';
+import { WebBrowser } from 'expo';
+import { Font } from 'expo';
+
+import { MonoText } from '../components/StyledText';
+
+import Schedule from '../components/Schedule';
+
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import TabBar from "react-native-underline-tabbar";
 import Colors from '../constants/Colors';
 
-export default class BerichtenScreen extends React.Component {
+export default class HeaderBerichten extends React.Component {
   constructor(props) {
     super(props);
     this.state = {fontLoaded: false};
   }
-  
-  static navigationOptions = {
-    header: null,
-  };
 
   async componentDidMount() {
     try {
@@ -27,31 +39,27 @@ export default class BerichtenScreen extends React.Component {
     }
   }
 
+  
   render() {
     return (
       <View style={styles.container}>
-        <HeaderBerichten/>
-        <ScrollView style={styles.container}>
-          {/* Go ahead and delete ExpoLinksView and replace it with your
-            * content, we just wanted to provide you with some helpful links */}
-          <ExpoLinksView />
-        </ScrollView>
-      </View>
+        <Text style={styles.rooster}>Berichten</Text>
+    </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 0,
-    backgroundColor: '#fff',
-  },
-  rooster: {
+    rooster: {
     fontSize:20, 
     fontFamily: 'open-sans-semi-bold',
     marginLeft:0,
     color:Colors.VBSBlue,
     textAlign:"center",
-  },
+    },
+    container: {
+        backgroundColor:'white',
+        paddingTop: 40,
+        paddingBottom: 10,
+    }
 });
