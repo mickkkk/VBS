@@ -1,9 +1,11 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import HeaderAccount from '../components/Account/HeaderAccount';
 import {View} from 'react-native';
 import Colors from '../constants/Colors';
+import {tabView, TabBar, SceneMap} from 'react-native-tab-view';
+
 
 export default class AccountScreen extends React.Component {
   constructor(props) {
@@ -34,7 +36,7 @@ export default class AccountScreen extends React.Component {
         <ScrollView style={styles.container}>
           {/* Go ahead and delete ExpoLinksView and replace it with your
             * content, we just wanted to provide you with some helpful links */}
-          <ExpoLinksView />
+          
         </ScrollView>
       </View>
     );

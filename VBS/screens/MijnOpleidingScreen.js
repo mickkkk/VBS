@@ -1,8 +1,15 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import HeaderMijnOpleiding from '../components/MijnOpleiding/HeaderMijnOpleiding';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
 import Colors from '../constants/Colors';
+import {TabView, SceneMap} from 'react-native-tab-view';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import TabBar from "react-native-underline-tabbar";
+import Schedule from '../components/Rooster/Schedule';
+
+import Modules from '../components/MijnOpleiding/Modules';
+import Cijfers from '../components/MijnOpleiding/Cijfers';
 
 export default class MijnOpleidingScreen extends React.Component {
   constructor(props) {
@@ -26,11 +33,35 @@ export default class MijnOpleidingScreen extends React.Component {
     }
   }
 
+  _renderScene = ({ route }) => {
+    switch (route.key) {
+      case 'modules':
+        return <Modules />;
+      case 'cijfers':
+        return <Cijfers />;
+      default:
+        return null;
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <HeaderMijnOpleiding/>
         <ScrollView style={styles.container}>
+        <ScrollableTabView
+          tabBarActiveTextColor= {Colors.VBSBlue}
+          tabBarUnderlineStyle= {'red'}
+          tabBarPosition={"top"}
+          renderTabBar={() => <TabBar 
+            underlineColor={Colors.VBSBlue}
+            underlineHeight= {3}
+            tabMargin= {0}
+            tabBarTextStyle={{fontSize:18, fontFamily: 'open-sans-regular'}}
+            />}>
+          <Modules tabLabel={{label: "         Modules         "}} name="1"/>
+          <Cijfers tabLabel={{label: "         Cijfers         "}} name="17"/>
+        </ScrollableTabView>
         </ScrollView>
       </View>
     );
