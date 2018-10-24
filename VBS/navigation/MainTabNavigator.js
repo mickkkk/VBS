@@ -1,12 +1,13 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import RoosterScreen from '../screens/RoosterScreen';
 import BerichtenScreen from '../screens/BerichtenScreen';
 import MijnOpleidingScreen from '../screens/MijnOpleidingScreen';
 import AccountScreen from '../screens/AccountScreen';
+import ModuleScreen from '../components/MijnOpleiding/ModuleScreen';
 
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -48,7 +49,9 @@ BerichtenStack.navigationOptions = {
 
 const MijnOpleidingStack = createStackNavigator({
   MijnOpleiding: MijnOpleidingScreen,
-});
+  Module:ModuleScreen,
+  }
+);
 
 MijnOpleidingStack.navigationOptions = {
   tabBarLabel: 'MijnOpleiding',

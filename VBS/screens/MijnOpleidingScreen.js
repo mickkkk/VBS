@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import HeaderMijnOpleiding from '../components/MijnOpleiding/HeaderMijnOpleiding';
-import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, Dimensions, TouchableHighlight } from 'react-native';
 import Colors from '../constants/Colors';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
@@ -18,8 +18,9 @@ export default class MijnOpleidingScreen extends React.Component {
   }
   
   static navigationOptions = {
-    header: null,
+    header: null
   };
+
 
   async componentDidMount() {
     try {
@@ -44,6 +45,11 @@ export default class MijnOpleidingScreen extends React.Component {
     }
   };
 
+  _onPressModule = () => {
+    this.props.navigation.navigate('Module')
+    //this.props.navigation.push('Rooster');
+}
+
   render() {
     return (
       <View style={styles.container}>
@@ -59,10 +65,10 @@ export default class MijnOpleidingScreen extends React.Component {
             tabMargin= {0}
             tabBarTextStyle={{fontSize:18, fontFamily: 'open-sans-regular'}}
             />}>
-          <Modules tabLabel={{label: "         Modules         "}} name="1"/>
+          <Modules tabLabel={{label: "         Modules         "}} name="1" navigation={this.props.navigation}/>
           <Cijfers tabLabel={{label: "         Cijfers         "}} name="17"/>
         </ScrollableTabView>
-        </ScrollView>
+        </ScrollView>]
       </View>
     );
   }

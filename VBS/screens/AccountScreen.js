@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions, Font } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import HeaderAccount from '../components/Account/HeaderAccount';
 import {View} from 'react-native';
