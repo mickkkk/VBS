@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Image } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -54,12 +54,29 @@ const MijnOpleidingStack = createStackNavigator({
 );
 
 MijnOpleidingStack.navigationOptions = {
-  tabBarLabel: 'MijnOpleiding',
+  tabBarLabel: 'Mijn Opleiding',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
+    focused ? 
+    <Image 
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
+      style={{
+        height: 30,
+        width: 25
+      }} 
+      source={require('../assets/images/vbs.png')}/>
+      :
+      <Image 
+      focused={focused}
+      style={{
+        height: 30,
+        width: 25
+      }} 
+      source={require('../assets/images/vbs_unfocused.png')}/>
+    
+    // <TabBarIcon
+    //   focused={focused}
+    //   name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+    // />
   ),
 };
 
@@ -70,11 +87,12 @@ const AccountStack = createStackNavigator({
 AccountStack.navigationOptions = {
   tabBarLabel: 'Account',
   tabBarIcon: ({ focused }) => (
+    
     <MaterialCommunityIcons
-      focused={focused}
-      size={35}
-      name={Platform.OS === 'ios' ? `account${focused ? '-outline' : '-outline'}` : 'md-link'}
-      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+       focused={focused}
+       size={35}
+       name={Platform.OS === 'ios' ? `account${focused ? '-outline' : '-outline'}` : 'md-link'}
+       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   ),
 };
