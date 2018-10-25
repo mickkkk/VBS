@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Font } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import HeaderBerichten from '../components/Berichten/HeaderBerichten';
+import Chat from '../components/Berichten/Chat';
 import {View} from 'react-native';
 import Colors from '../constants/Colors';
 
@@ -31,11 +32,7 @@ export default class BerichtenScreen extends React.Component {
     return (
       <View style={styles.container}>
         <HeaderBerichten/>
-        <ScrollView style={styles.container}>
-          {/* Go ahead and delete ExpoLinksView and replace it with your
-            * content, we just wanted to provide you with some helpful links */}
-          <ExpoLinksView />
-        </ScrollView>
+          <Chat/>
       </View>
     );
   }
