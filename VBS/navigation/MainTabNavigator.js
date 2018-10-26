@@ -8,6 +8,7 @@ import BerichtenScreen from '../screens/BerichtenScreen';
 import MijnOpleidingScreen from '../screens/MijnOpleidingScreen';
 import AccountScreen from '../screens/AccountScreen';
 import ModuleScreen from '../components/MijnOpleiding/ModuleScreen';
+import Chat from '../components/Berichten/Chat';
 
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -33,6 +34,7 @@ RoosterStack.navigationOptions = {
 
 const BerichtenStack = createStackNavigator({
   Berichten: BerichtenScreen,
+  Chat: Chat,
 });
 
 BerichtenStack.navigationOptions = {

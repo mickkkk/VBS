@@ -29,8 +29,6 @@ class Fire {
         }
       };
 
-
-
       get uid() {
         return (firebase.auth().currentUser || {}).uid;
       }
@@ -40,9 +38,18 @@ class Fire {
       }
     
       parse = snapshot => {
-        const { timestamp: numberStamp, text, user } = snapshot.val();
+        const { timestamp: numberStamp, text, user, image } = snapshot.val();
         const { key: _id } = snapshot;
         const timestamp = new Date(numberStamp);
+        if(text === undefined) {
+          const message = {
+            _id,
+            timestamp,
+            image,
+            user,
+          };
+          return message;
+        }
         const message = {
           _id,
           timestamp,
@@ -63,7 +70,20 @@ class Fire {
   // send the message to the Backend
   send = messages => {
     for (let i = 0; i < messages.length; i++) {
+      // if(!message.text){
+      //   message.text = "_";
+      // }
       const { text, user } = messages[i];
+      if(text === undefined) {
+        const { image } = messages[i];
+        const message = {
+          image,
+          user,
+          timestamp: this.timestamp,
+        };
+        this.append(message);
+        break;
+      }
       const message = {
         text,
         user,

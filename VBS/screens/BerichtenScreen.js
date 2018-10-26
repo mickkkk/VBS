@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Font } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import HeaderBerichten from '../components/Berichten/HeaderBerichten';
 import Chat from '../components/Berichten/Chat';
-import {View} from 'react-native';
+import {View, TouchableHighlight, Text, Image,} from 'react-native';
 import Colors from '../constants/Colors';
 
 export default class BerichtenScreen extends React.Component {
@@ -28,11 +28,25 @@ export default class BerichtenScreen extends React.Component {
     }
   }
 
+  _onPressChat = (titleMod) => {
+    this.props.navigation.navigate('Chat',{title: titleMod});
+}
+
   render() {
     return (
       <View style={styles.container}>
         <HeaderBerichten/>
-          <Chat/>
+        <View style={styles.day}>
+            <TouchableHighlight onPress={() => this._onPressChat("Klas N21")} underlayColor = "white">
+                <View style={styles.item}>
+                    <View style={styles.module}>
+                        <Text style={styles.title}>Klas N21</Text>
+                        <Text style={styles.subtitle}>Mick: Hier mijn laatste bericht</Text>
+                    </View>
+                    <Image style={styles.img} source={require('../assets/images/arrow.png')}/>
+                </View>
+            </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -42,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#F4F4F4',
   },
   rooster: {
     fontSize:20, 
@@ -50,5 +64,49 @@ const styles = StyleSheet.create({
     marginLeft:0,
     color:Colors.VBSBlue,
     textAlign:"center",
+  },
+  img: {
+    height: 23,
+    width: 23,
+    position: 'absolute',
+    right:12,
+    top: 20,
+    marginTop:11,
+  },
+  day:{
+    backgroundColor: 'white',
+    borderRadius:10,
+    borderWidth: 0.5,
+    borderColor: '#C3C1C1',
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop:5,
+    marginLeft:5,
+    marginRight:5,
+    overflow: 'hidden',
+  },
+  item:{
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    //justifyContent: 'space-between',
+    paddingVertical: 20,
+    //paddingHorizontal: 0,
+  },
+  module:{
+    //backgroundColor: "green",
+    //flexGrow: 2,
+    marginLeft: 12 ,
+    marginRight: 30,
+  },
+  title: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 14,
+    color:Colors.VBSBlue,
+  },
+  subtitle: {
+      fontFamily: 'open-sans-regular',
+      fontSize: 11,
   },
 });
