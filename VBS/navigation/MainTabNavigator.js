@@ -1,6 +1,10 @@
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+
 import React from 'react';
 import { Platform, Image } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import RoosterScreen from '../screens/RoosterScreen';
@@ -9,10 +13,10 @@ import MijnOpleidingScreen from '../screens/MijnOpleidingScreen';
 import AccountScreen from '../screens/AccountScreen';
 import ModuleScreen from '../components/MijnOpleiding/ModuleScreen';
 import Chat from '../components/Berichten/Chat';
-
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-
 import Colors from '../constants/Colors';
+
+const VBSLogo = require('../assets/images/vbs.png');
+const VBSLogoUnfocused = require('../assets/images/vbs_unfocused.png');
 
 const RoosterStack = createStackNavigator({
   Rooster: RoosterScreen,
@@ -23,18 +27,14 @@ RoosterStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `md-calendar`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'md-calendar' : 'md-information-circle'}
     />
-  ),
+  )
 };
 
 const BerichtenStack = createStackNavigator({
   Berichten: BerichtenScreen,
-  Chat: Chat,
+  Chat
 });
 
 BerichtenStack.navigationOptions = {
@@ -43,65 +43,73 @@ BerichtenStack.navigationOptions = {
     <MaterialIcons
       focused={focused}
       size={30}
-      name={Platform.OS === 'ios' ? `chat-bubble${focused ? '-outline' : '-outline'}` : 'md-link'}
+      name={
+        Platform.OS === 'ios'
+          ? `chat-bubble${focused ? '-outline' : '-outline'}`
+          : 'md-link'
+      }
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
-  ),
+  )
 };
 
 const MijnOpleidingStack = createStackNavigator({
   MijnOpleiding: MijnOpleidingScreen,
-  Module:ModuleScreen,
-  }
-);
+  Module: ModuleScreen
+});
 
 MijnOpleidingStack.navigationOptions = {
   tabBarLabel: 'Mijn Opleiding',
-  tabBarIcon: ({ focused }) => (
-    focused ? 
-    <Image 
-      focused={focused}
-      style={{
-        height: 30,
-        width: 25
-      }} 
-      source={require('../assets/images/vbs.png')}/>
-      :
-      <Image 
-      focused={focused}
-      style={{
-        height: 30,
-        width: 25
-      }} 
-      source={require('../assets/images/vbs_unfocused.png')}/>
-    
+  tabBarIcon: ({ focused }) =>
+    focused ? (
+      <Image
+        focused={focused}
+        style={{
+          height: 30,
+          width: 25
+        }}
+        source={VBSLogo}
+      />
+    ) : (
+      <Image
+        focused={focused}
+        style={{
+          height: 30,
+          width: 25
+        }}
+        source={VBSLogoUnfocused}
+      />
+    )
+
     // <TabBarIcon
     //   focused={focused}
     //   name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
     // />
-  ),
 };
 
 const AccountStack = createStackNavigator({
-  Account: AccountScreen,
+  Account: AccountScreen
 });
 
 AccountStack.navigationOptions = {
   tabBarLabel: 'Account',
   tabBarIcon: ({ focused }) => (
-    
     <MaterialCommunityIcons
-       focused={focused}
-       size={35}
-       name={Platform.OS === 'ios' ? `account${focused ? '-outline' : '-outline'}` : 'md-link'}
-       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      focused={focused}
+      size={35}
+      name={
+        Platform.OS === 'ios'
+          ? `account${focused ? '-outline' : '-outline'}`
+          : 'md-link'
+      }
+      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
-  ),
+  )
 };
 
 export default createBottomTabNavigator({
   RoosterStack,
   BerichtenStack,
   MijnOpleidingStack,
-  AccountStack,
+  AccountStack
 });

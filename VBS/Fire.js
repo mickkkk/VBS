@@ -1,65 +1,67 @@
 import firebase from 'firebase';
+import { Alert } from 'react-native';
 
 class Fire {
-    constructor() {
-        this.init();
-        this.observeAuth();
-    }
+  constructor() {
+    this.init();
+    this.observeAuth();
+  }
 
-    init = () =>
+  init = () =>
     firebase.initializeApp({
-        apiKey: "AIzaSyAeGaTaMbHfXQ3nUiXiIGtUJAH4OYeHExk",
-        authDomain: "vastgoedbs-663cd.firebaseapp.com",
-        databaseURL: "https://vastgoedbs-663cd.firebaseio.com",
-        projectId: "vastgoedbs-663cd",
-        storageBucket: "vastgoedbs-663cd.appspot.com",
-        messagingSenderId: "786621546607"
+      apiKey: 'AIzaSyAeGaTaMbHfXQ3nUiXiIGtUJAH4OYeHExk',
+      authDomain: 'vastgoedbs-663cd.firebaseapp.com',
+      databaseURL: 'https://vastgoedbs-663cd.firebaseio.com',
+      projectId: 'vastgoedbs-663cd',
+      storageBucket: 'vastgoedbs-663cd.appspot.com',
+      messagingSenderId: '786621546607'
     });
 
-    observeAuth = () =>
-        firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+  observeAuth = () =>
+    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
 
-    onAuthStateChanged = user => {
-        if (!user) {
-          try {
-            firebase.auth().signInAnonymously();
-          } catch ({ message }) {
-            alert(message);
-          }
-        }
-      };
-
-      get uid() {
-        return (firebase.auth().currentUser || {}).uid;
+  onAuthStateChanged = user => {
+    if (!user) {
+      try {
+        firebase.auth().signInAnonymously();
+      } catch ({ message }) {
+        Alert(message);
+        //alert(message);
       }
-    
-      get ref() {
-        return firebase.database().ref('messages');
-      }
-    
-      parse = snapshot => {
-        const { timestamp: numberStamp, text, user, image } = snapshot.val();
-        const { key: _id } = snapshot;
-        const timestamp = new Date(numberStamp);
-        if(text === undefined) {
-          const message = {
-            _id,
-            timestamp,
-            image,
-            user,
-          };
-          return message;
-        }
-        const message = {
-          _id,
-          timestamp,
-          text,
-          user,
-        };
-        return message;
-      };
+    }
+  };
 
-    on = callback =>
+  get uid() {
+    return (firebase.auth().currentUser || {}).uid;
+  }
+
+  get ref() {
+    return firebase.database().ref('messages');
+  }
+
+  parse = snapshot => {
+    const { timestamp: numberStamp, text, user, image } = snapshot.val();
+    const { key: _id } = snapshot;
+    const timestamp = new Date(numberStamp);
+    if (text === undefined) {
+      const message = {
+        _id,
+        timestamp,
+        image,
+        user
+      };
+      return message;
+    }
+    const message = {
+      _id,
+      timestamp,
+      text,
+      user
+    };
+    return message;
+  };
+
+  on = callback =>
     this.ref
       .limitToLast(20)
       .on('child_added', snapshot => callback(this.parse(snapshot)));
@@ -74,12 +76,12 @@ class Fire {
       //   message.text = "_";
       // }
       const { text, user } = messages[i];
-      if(text === undefined) {
+      if (text === undefined) {
         const { image } = messages[i];
         const message = {
           image,
           user,
-          timestamp: this.timestamp,
+          timestamp: this.timestamp
         };
         this.append(message);
         break;
@@ -87,7 +89,7 @@ class Fire {
       const message = {
         text,
         user,
-        timestamp: this.timestamp,
+        timestamp: this.timestamp
       };
       this.append(message);
     }

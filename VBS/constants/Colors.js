@@ -12,5 +12,4 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  VBSBlue: '#27428C',
 };

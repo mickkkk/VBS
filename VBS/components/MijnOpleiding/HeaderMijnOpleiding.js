@@ -1,37 +1,26 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  Dimensions,
-  SectionList,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import { Font } from 'expo';
-
-import { MonoText } from '../StyledText';
-
-import Schedule from '../Rooster/Schedule';
-
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import TabBar from "react-native-underline-tabbar";
 import Colors from '../../constants/Colors';
+
+const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
+const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
 export default class HeaderMijnOpleiding extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {fontLoaded: false};
+    this.state = { fontLoaded: false };
   }
 
   async componentDidMount() {
     try {
       await Font.loadAsync({
-        'open-sans-regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
-        'open-sans-semi-bold': require('../../assets/fonts/OpenSans-SemiBold.ttf'),
+        'open-sans-regular': OpenSansRegular,
+        'open-sans-semi-bold': OpenSansSemiBold,
       });
       this.setState({ fontLoaded: true });
     } catch (error) {
@@ -51,14 +40,14 @@ export default class HeaderMijnOpleiding extends React.Component {
 
 const styles = StyleSheet.create({
     rooster: {
-    fontSize:20, 
+    fontSize: 20, 
     fontFamily: 'open-sans-semi-bold',
-    marginLeft:0,
-    color:Colors.VBSBlue,
-    textAlign:"center",
+    marginLeft: 0,
+    color: Colors.VBSBlue,
+    textAlign: 'center',
     },
     container: {
-        backgroundColor:'white',
+        backgroundColor: 'white',
         paddingTop: 40,
         paddingBottom: 10,
     }

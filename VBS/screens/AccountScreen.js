@@ -1,27 +1,26 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Dimensions, Font } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ScrollView, StyleSheet, Font, View } from 'react-native';
 import HeaderAccount from '../components/Account/HeaderAccount';
-import {View} from 'react-native';
 import Colors from '../constants/Colors';
-import {tabView, TabBar, SceneMap} from 'react-native-tab-view';
 
+const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
+const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 
 export default class AccountScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {fontLoaded: false};
-  }
-  
   static navigationOptions = {
     header: null,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { fontLoaded: false };
+  }
+
   async componentDidMount() {
     try {
       await Font.loadAsync({
-        'open-sans-regular': require('../assets/fonts/OpenSans-Regular.ttf'),
-        'open-sans-semi-bold': require('../assets/fonts/OpenSans-SemiBold.ttf'),
+        'open-sans-regular': OpenSansRegular,
+        'open-sans-semi-bold': OpenSansSemiBold,
       });
       this.setState({ fontLoaded: true });
     } catch (error) {
@@ -32,7 +31,7 @@ export default class AccountScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <HeaderAccount/>
+        <HeaderAccount />
         <ScrollView style={styles.container}>
           {/* Go ahead and delete ExpoLinksView and replace it with your
             * content, we just wanted to provide you with some helpful links */}
@@ -50,10 +49,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   rooster: {
-    fontSize:20, 
+    fontSize: 20, 
     fontFamily: 'open-sans-semi-bold',
-    marginLeft:0,
-    color:Colors.VBSBlue,
-    textAlign:"center",
+    marginLeft: 0,
+    color: Colors.VBSBlue,
+    textAlign: 'center',
   },
 });

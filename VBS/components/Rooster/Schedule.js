@@ -1,23 +1,15 @@
 import React from 'react';
 import {
-  Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  Dimensions,
-  SectionList,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import { Font } from 'expo';
+import { Font, AppLoading } from 'expo';
 import Colors from '../../constants/Colors';
 
-import { MonoText } from '../StyledText';
-
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import TabBar from "react-native-underline-tabbar";
+const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
+const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
 // const initialLayout = {
 //   height: 0,
@@ -34,8 +26,8 @@ export default class Schedule extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'open-sans-regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
-      'open-sans-bold': require('../../assets/fonts/OpenSans-Bold.ttf'),
+      'open-sans-regular': OpenSansRegular,
+      'open-sans-bold': OpenSansSemiBold,
     });
 
     this.setState({ fontLoaded: true });
@@ -43,7 +35,7 @@ export default class Schedule extends React.Component {
 
   render() {
     if (!this.state.fontLoaded) {
-    return <Expo.AppLoading />;
+    return <AppLoading />;
     }
     return (
         <View style={styles.container}>
@@ -52,7 +44,7 @@ export default class Schedule extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Maandag 10 September</Text>
                 </View>
-                <View style={styles.line}></View>
+                <View style={styles.line} />
                 <View style={styles.item}>
                     <Text style={styles.time}>09:00-11:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -61,7 +53,7 @@ export default class Schedule extends React.Component {
                     </View>
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
-                <View style={styles.line2}></View>
+                <View style={styles.line2} />
                 <View style={styles.item}>
                     <Text style={styles.time}>11:00-13:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -76,7 +68,7 @@ export default class Schedule extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Dinsdag 11 September</Text>
                 </View>
-                <View style={styles.line}></View>
+                <View style={styles.line} />
                 <View style={styles.item}>
                     <Text style={styles.time}>09:00-11:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -85,7 +77,7 @@ export default class Schedule extends React.Component {
                     </View>
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
-                <View style={styles.line2}></View>
+                <View style={styles.line2} />
                 <View style={styles.item}>
                     <Text style={styles.time}>11:00-13:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -100,7 +92,7 @@ export default class Schedule extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Woensdag 12 September</Text>
                 </View>
-                <View style={styles.line}></View>
+                <View style={styles.line} />
                 <View style={styles.item}>
                     <Text style={styles.time}>09:00-11:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -109,7 +101,7 @@ export default class Schedule extends React.Component {
                     </View>
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
-                <View style={styles.line2}></View>
+                <View style={styles.line2} />
                 <View style={styles.item}>
                     <Text style={styles.time}>11:00-13:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -124,7 +116,7 @@ export default class Schedule extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Donderdag 13 September</Text>
                 </View>
-                <View style={styles.line}></View>
+                <View style={styles.line} />
                 <View style={styles.item}>
                     <Text style={styles.time}>09:00-11:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -133,7 +125,7 @@ export default class Schedule extends React.Component {
                     </View>
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
-                <View style={styles.line2}></View>
+                <View style={styles.line2} />
                 <View style={styles.item}>
                     <Text style={styles.time}>11:00-13:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -148,7 +140,7 @@ export default class Schedule extends React.Component {
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Vrijdag 14 September</Text>
                 </View>
-                <View style={styles.line}></View>
+                <View style={styles.line} />
                 <View style={styles.item}>
                     <Text style={styles.time}>09:00-11:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -157,7 +149,7 @@ export default class Schedule extends React.Component {
                     </View>
                     <Text style={styles.place}>Utrecht</Text>
                 </View>
-                <View style={styles.line2}></View>
+                <View style={styles.line2} />
                 <View style={styles.item}>
                     <Text style={styles.time}>11:00-13:00</Text>
                     <View style={styles.lessonTeacher}>
@@ -175,40 +167,40 @@ export default class Schedule extends React.Component {
 
 const styles = StyleSheet.create({
     line: {
-        backgroundColor:'#C3C1C1',
+        backgroundColor: '#C3C1C1',
         height: 0.5,
     },
     line2: {
-        backgroundColor:'#C3C1C1',
+        backgroundColor: '#C3C1C1',
         height: 0.5,
         marginHorizontal: 12,
     },
-    day:{
+    day: {
         backgroundColor: 'white',
-        borderRadius:10,
+        borderRadius: 10,
         borderWidth: 0.5,
         borderColor: '#C3C1C1',
         display: 'flex',
         flexDirection: 'column',
-        marginTop:5,
-        marginLeft:5,
-        marginRight:5,
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 5,
         overflow: 'hidden',
         
         
     },
-    header:{
+    header: {
         backgroundColor: 'white',
         paddingVertical: 23.5,
-        paddingLeft:12,
+        paddingLeft: 12,
     },
-    headerText:{
+    headerText: {
         color: Colors.VBSBlue,
         fontWeight: 'bold',
         fontSize: 14,
         fontFamily: 'open-sans-bold',
     },
-    item:{
+    item: {
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'row',
@@ -218,17 +210,17 @@ const styles = StyleSheet.create({
         //paddingHorizontal: 0,
     },
     time: {
-        fontSize:11,
+        fontSize: 11,
         marginLeft: 12,
-        marginTop:11,
+        marginTop: 11,
         fontFamily: 'open-sans-regular',
-        color:Colors.VBSBlue,
+        color: Colors.VBSBlue,
         //flexGrow:1,
     },
     lesson: {
         fontFamily: 'open-sans-regular',
         fontSize: 14,
-        color:Colors.VBSBlue,
+        color: Colors.VBSBlue,
     },
     teacher: {
         fontFamily: 'open-sans-regular',
@@ -236,17 +228,17 @@ const styles = StyleSheet.create({
     },
     place: {
         position: 'absolute',
-        right:12,
+        right: 12,
         top: 20,
         fontFamily: 'open-sans-regular',
         fontSize: 11,
-        color:Colors.VBSBlue,
-        marginTop:11,
+        color: Colors.VBSBlue,
+        marginTop: 11,
         //backgroundColor: 'yellow',
         
         //marginRight: 12,
     },
-    lessonTeacher:{
+    lessonTeacher: {
         //backgroundColor: "green",
         //flexGrow: 2,
         marginLeft: 30,
@@ -254,7 +246,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F4F4F4',
-        paddingTop:5,
+        paddingTop: 5,
     },
     developmentModeText: {
         marginBottom: 20,

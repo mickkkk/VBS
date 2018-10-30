@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, Platform, Alert } from 'react-native';
 
-import{ GiftedChat, Bubble, Actions } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble, Actions } from 'react-native-gifted-chat';
 
-import Fire from '../../Fire'
+import Fire from '../../Fire';
 import Colors from '../../constants/Colors';
 import CustomActions from './CustomActions';
 
@@ -11,9 +11,17 @@ import CustomActions from './CustomActions';
 class Chat extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.title}`,
-         headerTitleStyle : {fontFamily:'open-sans-regular',fontSize:20,marginLeft:-30, marginRight:-30, textAlign: 'left',alignSelf:'center',color:Colors.VBSBlue},
-            headerStyle:{
-                backgroundColor:'white',
+         headerTitleStyle: {
+             fontFamily: 'open-sans-regular',
+             fontSize: 20,
+             marginLeft: -30, 
+             marginRight: -30, 
+             textAlign: 'left',
+             alignSelf: 'center',
+             color: Colors.VBSBlue
+            },
+            headerStyle: {
+                backgroundColor: 'white',
             },
         });
 
@@ -26,22 +34,6 @@ class Chat extends Component {
         this.renderBubble = this.renderBubble.bind(this);
     }
     
-    get user() {
-        // Return our name and our UID for GiftedChat to parse
-        return {
-          name: 'Herman',
-          _id: Fire.shared.uid,
-          createdAt: new Date(),
-          avatar: 'https://placeimg.com/140/140/any',
-        };
-      }
-
-    get title() {
-        return {
-            
-        }
-    }
-
     componentDidMount() {
     Fire.shared.on(message =>
         this.setState(previousState => ({
@@ -53,6 +45,22 @@ class Chat extends Component {
       Fire.shared.off();
     }
 
+    get user() {
+        // Return our name and our UID for GiftedChat to parse
+        return {
+          name: 'Herman',
+          _id: Fire.shared.uid,
+          createdAt: new Date(),
+          avatar: 'https://placeimg.com/140/140/any',
+        };
+    }
+
+    get title() {
+        return {
+            
+        };
+    }
+
     renderCustomActions(props) {
         if (Platform.OS === 'ios') {
           return (
@@ -62,13 +70,13 @@ class Chat extends Component {
           );
         }
         const options = {
-          'Action 1': (props) => {
-            alert('option 1');
+          'Action 1': () => {
+            Alert('option 1');
           },
-          'Action 2': (props) => {
-            alert('option 2');
+          'Action 2': () => {
+            Alert('option 2');
           },
-          'Cancel': () => {},
+          Cancel: () => {},
         };
         return (
           <Actions
@@ -78,7 +86,7 @@ class Chat extends Component {
         );
       }
 
-    renderBubble (props) {
+    renderBubble(props) {
         return (
         <Bubble 
             {...props}
@@ -96,47 +104,22 @@ class Chat extends Component {
                 },
             }}
         />
-        )
-    }
-
-    renderTime() {
-        return (
-            <Time
-                textStyle={{
-                    right: {
-                        color: 'red',
-                        fontFamily: 'Open-Sans-Regular',
-                        fontSize: 14
-                    },
-                    left: {
-                        color: 'red',
-                        fontFamily: 'Open-Sans-Regular',
-                        fontSize: 14
-                    }
-                }}
-            />
         );
     }
 
-
     render() {
     return (
-    <View style={{backgroundColor: 'white', flex:1}}>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
         <GiftedChat
         messages={this.state.messages}
         onSend={Fire.shared.send}
         user={this.user}
         renderBubble={this.renderBubble}
-        renderTime={this.renderTime.bind(this)}
         renderActions={this.renderCustomActions}
         />
     </View>
-  );
+    );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default Chat;

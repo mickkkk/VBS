@@ -7,32 +7,21 @@ import {
   View,
   ViewPropTypes,
   Text,
+  Alert,
 } from 'react-native';
 
 import CameraRollPicker from 'react-native-camera-roll-picker';
-import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav';
+import NavBar, { NavButton, NavButtonText, NavTitle, navigator } from 'react-native-nav';
 
 export default class CustomActions extends React.Component {
   constructor(props) {
     super(props);
-    this._images = [];
+    this.images = [];
     this.state = {
       modalVisible: false,
     };
     this.onActionsPress = this.onActionsPress.bind(this);
     this.selectImages = this.selectImages.bind(this);
-  }
-
-  setImages(images) {
-    this._images = images;
-  }
-
-  getImages() {
-    return this._images;
-  }
-
-  setModalVisible(visible = false) {
-    this.setState({modalVisible: visible});
   }
 
   onActionsPress() {
@@ -57,13 +46,25 @@ export default class CustomActions extends React.Component {
                 },
               });
             },
-            (error) => alert(error.message),
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+            (error) => Alert(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
           );
           break;
         default:
       }
     });
+  }
+
+  setImages(images) {
+    this.images = images;
+  }
+
+  getImages() {
+    return this.images;
+  }
+
+  setModalVisible(visible = false) {
+    this.setState({ modalVisible: visible });
   }
 
   selectImages(images) {
@@ -72,42 +73,52 @@ export default class CustomActions extends React.Component {
 
   renderNavBar() {
     return (
-      <NavBar style={{
+      <NavBar
+      style={{
         statusBar: {
           backgroundColor: '#FFF',
         },
         navBar: {
           backgroundColor: '#FFF',
         },
-      }}>
-        <NavButton onPress={() => {
+      }}
+      >
+        <NavButton
+        onPress={() => {
           this.setModalVisible(false);
-        }}>
-          <NavButtonText style={{
+        }}
+        >
+          <NavButtonText
+          style={{
             color: '#000',
-          }}>
+          }}
+          >
             {'Cancel'}
           </NavButtonText>
         </NavButton>
-        <NavTitle style={{
+        <NavTitle
+        style={{
           color: '#000',
-        }}>
+        }}
+        >
           {'Camera Roll'}
         </NavTitle>
-        <NavButton onPress={() => {
+        <NavButton
+        onPress={() => {
           this.setModalVisible(false);
 
-          const images = this.getImages().map((image) => {
-            return {
+          const images = this.getImages().map((image) => ({
               image: image.uri,
-            };
-          });
+            }));
           this.props.onSend(images);
           this.setImages([]);
-        }}>
-          <NavButtonText style={{
+        }}
+        >
+          <NavButtonText
+style={{
             color: '#000',
-          }}>
+          }}
+          >
             {'Send'}
           </NavButtonText>
         </NavButton>

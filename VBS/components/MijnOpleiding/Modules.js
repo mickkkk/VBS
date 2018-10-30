@@ -1,43 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  Dimensions,
-  SectionList,
   TouchableHighlight,
 } from 'react-native';
 
-import {navigation} from 'react-navigation';
-import { WebBrowser } from 'expo';
-import { Font } from 'expo';
-
-import { MonoText } from '../StyledText';
-
-import Schedule from '../Rooster/Schedule';
-import ModuleScreen from './ModuleScreen';
-
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import TabBar from "react-native-underline-tabbar";
+import { Font, AppLoading } from 'expo';
 import Colors from '../../constants/Colors';
 
+const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
+const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
+const Arrow = require('../../assets/images/arrow.png');
 
 
 export default class Modules extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {fontLoaded: false};
+    this.state = { fontLoaded: false };
   }
 
   async componentDidMount() {
     try {
       await Font.loadAsync({
-        'open-sans-regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
-        'open-sans-semi-bold': require('../../assets/fonts/OpenSans-SemiBold.ttf'),
+        'open-sans-regular': OpenSansRegular,
+        'open-sans-semi-bold': OpenSansSemiBold,
       });
       this.setState({ fontLoaded: true });
     } catch (error) {
@@ -45,111 +34,159 @@ export default class Modules extends React.Component {
     }
   }
 
-  _onPressModule = (titleMod) => {
-      this.props.navigation.navigate('Module',{title: titleMod});
+  onPressModule = (titleMod) => {
+      this.props.navigation.navigate('Module', { title: titleMod });
       //this.props.navigation.push('Rooster');
 }
  
   render() {
         if (!this.state.fontLoaded) {
-            return <Expo.AppLoading />;
+            return <AppLoading />;
             }
             return (
                 <View style={styles.container}>
                     {/* <Text>Week {this.props.name}!</Text> */}
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Kern Business Case")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Kern Business Case')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Kernmodule Business Case</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Vastgoedwaarde")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Vastgoedwaarde')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Vastgoedwaarde</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Opbrengsten en kosten")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Opbrengsten en kosten')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Opbrengsten en kosten</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Publiek- en privaatrecht")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Publiek- en privaatrecht')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Publiek- en privaatrecht</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Risicomanagement")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Risicomanagement')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Risicomanagement</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Conceptontwikkeling")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Conceptontwikkeling')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Conceptontwikkeling</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Ontwerp-en bouwproces")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Ontwerp-en bouwproces')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Ontwerp-en bouwproces</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
                     <View style={styles.day}>
-                        <TouchableHighlight onPress={() => this._onPressModule("Communicatie")} underlayColor = "white">
+                        <TouchableHighlight 
+                            onPress={() => this.onPressModule('Communicatie')} 
+                            underlayColor="white"
+                        >
                             <View style={styles.item}>
                                 <View style={styles.module}>
                                     <Text style={styles.title}>Communicatie</Text>
-                                    <Text style={styles.subtitle}>Korte uitleg over deze module. In één a twee zinnen waar het 
-                                    over gaat. Dus het word maximaal zo groot als dit voorbeeld.</Text>
+                                    <Text style={styles.subtitle}>
+                                    Korte uitleg over deze module. 
+                                    In één a twee zinnen waar het over gaat. 
+                                    Dus het word maximaal zo groot als dit voorbeeld.
+                                    </Text>
                                 </View>
-                                <Image style={styles.img} source={require('../../assets/images/arrow.png')}/>
+                                <Image style={styles.img} source={Arrow} />
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -163,45 +200,45 @@ const styles = StyleSheet.create({
         height: 23,
         width: 23,
         position: 'absolute',
-        right:12,
+        right: 12,
         top: 20,
-        marginTop:11,
+        marginTop: 11,
     },
     line: {
-        backgroundColor:'#C3C1C1',
+        backgroundColor: '#C3C1C1',
         height: 0.5,
     },
     line2: {
-        backgroundColor:'#C3C1C1',
+        backgroundColor: '#C3C1C1',
         height: 0.5,
         marginHorizontal: 12,
     },
-    day:{
+    day: {
         backgroundColor: 'white',
-        borderRadius:10,
+        borderRadius: 10,
         borderWidth: 0.5,
         borderColor: '#C3C1C1',
         display: 'flex',
         flexDirection: 'column',
-        marginTop:5,
-        marginLeft:5,
-        marginRight:5,
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 5,
         overflow: 'hidden',
         
         
     },
-    header:{
+    header: {
         backgroundColor: 'white',
         paddingVertical: 23.5,
-        paddingLeft:12,
+        paddingLeft: 12,
     },
-    headerText:{
+    headerText: {
         color: Colors.VBSBlue,
         fontWeight: 'bold',
         fontSize: 14,
         fontFamily: 'open-sans-bold',
     },
-    item:{
+    item: {
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'row',
@@ -211,32 +248,32 @@ const styles = StyleSheet.create({
         //paddingHorizontal: 0,
     },
     time: {
-        fontSize:11,
+        fontSize: 11,
         marginLeft: 12,
-        marginTop:11,
+        marginTop: 11,
         fontFamily: 'open-sans-regular',
-        color:Colors.VBSBlue,
+        color: Colors.VBSBlue,
         //flexGrow:1,
     },
     title: {
         fontFamily: 'open-sans-bold',
         fontSize: 14,
-        color:Colors.VBSBlue,
+        color: Colors.VBSBlue,
     },
     subtitle: {
         fontFamily: 'open-sans-regular',
         fontSize: 11,
     },
-    module:{
+    module: {
         //backgroundColor: "green",
         //flexGrow: 2,
-        marginLeft: 12 ,
+        marginLeft: 12,
         marginRight: 30,
     },
     container: {
         flex: 1,
         backgroundColor: '#F4F4F4',
-        paddingTop:5,
+        paddingTop: 5,
     },
     developmentModeText: {
         marginBottom: 20,
