@@ -1,7 +1,7 @@
 import { StyleSheet, Font, View, TouchableHighlight, Text, Image } from 'react-native';
 import React from 'react';
 
-import HeaderBerichten from '../components/Berichten/HeaderBerichten';
+import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
 const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
@@ -37,7 +37,7 @@ export default class BerichtenScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <HeaderBerichten />
+        <Header headerText="Berichten" />
         <View style={styles.day}>
             <TouchableHighlight 
               onPress={() => this.onPressChat('Klas N21')} 

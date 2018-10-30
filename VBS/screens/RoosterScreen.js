@@ -11,7 +11,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from 'react-native-underline-tabbar';
 
 import Schedule from '../components/Rooster/Schedule';
-import HeaderRooster from '../components/Rooster/HeaderRooster';
+import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
 const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
@@ -45,7 +45,7 @@ export default class RoosterScreen extends React.Component {
       }
     return (
       <View style={styles.container}>
-        <HeaderRooster />
+        <Header headerText="Rooster" />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <Text 
             style={{ 

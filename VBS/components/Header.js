@@ -5,12 +5,12 @@ import {
   View,
 } from 'react-native';
 import { Font } from 'expo';
-import Colors from '../../constants/Colors';
+import Colors from '../constants/Colors';
 
-const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
-const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
+const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
+const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 
-export default class HeaderAccount extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = { fontLoaded: false };
@@ -32,7 +32,7 @@ export default class HeaderAccount extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.rooster}>Account</Text>
+        <Text style={styles.rooster}>{this.props.headerText}</Text>
     </View>
     );
   }

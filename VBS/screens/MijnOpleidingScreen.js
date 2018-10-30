@@ -3,7 +3,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from 'react-native-underline-tabbar';
 
 import React from 'react';
-import HeaderMijnOpleiding from '../components/MijnOpleiding/HeaderMijnOpleiding';
+import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
 import Modules from '../components/MijnOpleiding/Modules';
@@ -54,7 +54,7 @@ export default class MijnOpleidingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <HeaderMijnOpleiding />
+        <Header headerText="Mijn Opleiding" />
         <ScrollView style={styles.container}>
         <ScrollableTabView
           tabBarActiveTextColor={Colors.VBSBlue}

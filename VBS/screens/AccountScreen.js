@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Font, View } from 'react-native';
-import HeaderAccount from '../components/Account/HeaderAccount';
+import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
 const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
@@ -31,7 +31,7 @@ export default class AccountScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <HeaderAccount />
+        <Header headerText="Account" />
         <ScrollView style={styles.container}>
           {/* Go ahead and delete ExpoLinksView and replace it with your
             * content, we just wanted to provide you with some helpful links */}
