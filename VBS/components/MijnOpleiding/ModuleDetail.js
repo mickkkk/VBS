@@ -5,27 +5,15 @@ import {
   View,
 } from 'react-native';
 import { Font } from 'expo';
+import { Actions } from 'react-native-router-flux';
+
 import Colors from '../../constants/Colors';
+
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
-export default class ModuleScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.title}`,
-     headerTitleStyle: { 
-       fontFamily: 'open-sans-regular', 
-       fontSize: 20, 
-       marginLeft: -30, 
-       marginRight: -30, 
-       textAlign: 'left', 
-       alignSelf: 'center', 
-       color: Colors.VBSBlue 
-      },
-        headerStyle: {
-            backgroundColor: 'white',
-        },
-    });
+export default class ModuleDetail extends React.Component {
     constructor(props) {
       super(props);
       this.state = { fontLoaded: false };
@@ -41,13 +29,17 @@ export default class ModuleScreen extends React.Component {
     } catch (error) {
       console.log(error);
     }
+    Actions.refresh({ title: this.props.module.titel });
   }
 
   
   render() {
+    const { titel, beschrijving } = this.props.module;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.rooster}>{this.props.navigation.state.params.name}</Text>
+        <Text style={styles.rooster}>{titel}</Text>
+        <Text style={styles.rooster}>{beschrijving}</Text>
     </View>
     );
   }

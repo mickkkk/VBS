@@ -1,5 +1,7 @@
-import { StyleSheet, Font, View, TouchableHighlight, Text, Image } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Text, Image } from 'react-native';
+import { Font, AppLoading } from 'expo';
 import React from 'react';
+import { Actions } from 'react-native-router-flux';
 
 import Header from '../components/Header';
 import Colors from '../constants/Colors';
@@ -9,16 +11,12 @@ const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 const Arrow = require('../assets/images/arrow.png');
 
 export default class BerichtenScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
   constructor(props) {
     super(props);
     this.state = { fontLoaded: false };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     try {
       await Font.loadAsync({
         'open-sans-regular': OpenSansRegular,
@@ -30,17 +28,22 @@ export default class BerichtenScreen extends React.Component {
     }
   }
 
-  onPressChat = (titleMod) => {
-    this.props.navigation.navigate('Chat', { title: titleMod });
+  onPressChat() {
+    Actions.chat();
+    //this.props.navigation.navigate('Chat', { title: titleMod });
 }
 
   render() {
+    if (!this.state.fontLoaded) {
+      return (
+        <AppLoading />
+      );
+    }
     return (
       <View style={styles.container}>
-        <Header headerText="Berichten" />
         <View style={styles.day}>
             <TouchableHighlight 
-              onPress={() => this.onPressChat('Klas N21')} 
+              onPress={this.onPressChat.bind(this)} 
               underlayColor="white"
             >
                 <View style={styles.item}>

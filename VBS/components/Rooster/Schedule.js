@@ -16,10 +16,6 @@ const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 //   width: Dimensions.get('window').width,
 // };
 export default class Schedule extends React.Component {
-  
-    static navigationOptions = {
-    header: null,
-  };
   state = {
     fontLoaded: false,
   };

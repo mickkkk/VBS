@@ -9,6 +9,7 @@ import ReduxThunk from 'redux-thunk';
 import AppNavigator from './navigation/AppNavigator';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
+import Router from './Router';
 
 const imgRobotDev = require('./assets/images/robot-dev.png');
 const imgRobotProd = require('./assets/images/robot-prod.png');
@@ -76,7 +77,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <LoginForm />
+          <Router />
           {/* <AppNavigator /> */}
         </View>
       </Provider>

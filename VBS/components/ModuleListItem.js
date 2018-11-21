@@ -1,108 +1,40 @@
-import _ from 'lodash';
-import React from 'react';
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  FlatList,
-  ListView
-} from 'react-native';
-import { Font, AppLoading } from 'expo';
-import { connect } from 'react-redux';
-
-import { modulesFetch } from '../../actions';
-import ModuleListItem from '../ModuleListItem';
-import Colors from '../../constants/Colors';
-
-const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
-const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
-const Arrow = require('../../assets/images/arrow.png');
+import React, { Component } from 'react';
+import { Text, View, Image, TouchableWithoutFeedback, StyleSheet, Platform } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import Colors from '../constants/Colors';
 
 
-class Modules extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { fontLoaded: false };
-  }
+const Arrow = require('../assets/images/arrow.png');
 
-  componentWillMount() {
-      this.props.modulesFetch();
 
-      this.createDataSource(this.props);
-  }
-
-  async componentDidMount() {
-    try {
-      await Font.loadAsync({
-        'open-sans-regular': OpenSansRegular,
-        'open-sans-semi-bold': OpenSansSemiBold,
-      });
-      this.setState({ fontLoaded: true });
-    } catch (error) {
-      console.log(error);
+class ModuleListItem extends Component {
+    onRowPress() {
+        Actions.moduleDetail({ module: this.props.module });
     }
-  }
 
- componentWillReceiveProps(nextProps) {
-     this.createDataSource(nextProps);
- }
 
-onPressModule = (titleMod) => {
-      this.props.navigation.navigate('Module', { title: titleMod });
-      //this.props.navigation.push('Rooster');
-}
-
- createDataSource({ modules }) {
-     const ds = new ListView.DataSource({
-         rowHasChanged: (r1, r2) => r1 !== r2
-     });
-
-     this.dataSource = ds.cloneWithRows(modules);
- }
-
-renderRow(module) {
-    console.log(module, 'log module');
-    return <ModuleListItem module={module} />;
-}
- 
-  render() {
-         if (!this.state.fontLoaded) {
-             return <AppLoading />;
-             }
-            console.log(this.props.modules, 'log render Modules');
-            return (
-                <ListView
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this.renderRow}
-                    //keyExtractor={item => item.index}
-                />
-            //     <View style={styles.container}>
-            //         {/* <Text>Week {this.props.name}!</Text> */}
-            //         <View style={styles.day}>
-            //             <TouchableHighlight 
-            //                 onPress={() => this.onPressModule('Kern Business Case')} 
-            //                 underlayColor="white"
-            //             >
-            //                 <View style={styles.item}>
-            //                     <View style={styles.module}>
-            //                         <Text style={styles.title}>Kernmodule Business Case</Text>
-            //                         <Text style={styles.subtitle}>
-            //                         Korte uitleg over deze module. 
-            //                         In één a twee zinnen waar het over gaat. 
-            //                         Dus het word maximaal zo groot als dit voorbeeld.
-            //                         </Text>
-            //                     </View>
-            //                     <Image style={styles.img} source={Arrow} />
-            //                 </View>
-            //             </TouchableHighlight>
-            //         </View>
-            //   </View>
-    );
-  }
+    render() {
+        const { titel, beschrijving } = this.props.module;
+        console.log(titel, 'log title ModulesListItem');
+        return (
+                     <View style={styles.day}>
+                         <TouchableWithoutFeedback 
+                             onPress={this.onRowPress.bind(this)} 
+                             underlayColor="white"
+                         >
+                             <View style={styles.item}>
+                                 <View style={styles.module}>
+                                     <Text style={styles.title}>{titel}</Text>
+                                     <Text style={styles.subtitle}>
+                                     {beschrijving}
+                                     </Text>
+                                 </View>
+                                 <Image style={styles.img} source={Arrow} />
+                             </View>
+                         </TouchableWithoutFeedback>
+                     </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -269,12 +201,4 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => {
-    const modules = _.map(state.modules, (val, uid) => {
-        return { ...val, uid }; 
-    });
-
-    return { modules };
-};
-
-export default connect(mapStateToProps, { modulesFetch })(Modules);
+export default ModuleListItem;

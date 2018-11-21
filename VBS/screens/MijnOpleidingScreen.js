@@ -1,4 +1,5 @@
-import { ScrollView, StyleSheet, View, Font } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Font, AppLoading } from 'expo';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from 'react-native-underline-tabbar';
 
@@ -13,17 +14,13 @@ const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 
 export default class MijnOpleidingScreen extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
-
   constructor(props) {
     super(props);
     this.state = { fontLoaded: false };
   }
 
 
-  async componentDidMount() {
+  async componentWillMount() {
     try {
       await Font.loadAsync({
         'open-sans-regular': OpenSansRegular,
@@ -52,9 +49,13 @@ export default class MijnOpleidingScreen extends React.Component {
 }
 
   render() {
+    if (!this.state.fontLoaded) {
+      return (
+        <AppLoading />
+      );
+    }
     return (
       <View style={styles.container}>
-        <Header headerText="Mijn Opleiding" />
         <ScrollView style={styles.container}>
         <ScrollableTabView
           tabBarActiveTextColor={Colors.VBSBlue}

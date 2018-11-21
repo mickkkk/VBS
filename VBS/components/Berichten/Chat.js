@@ -9,21 +9,21 @@ import CustomActions from './CustomActions';
 
 
 class Chat extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: `${navigation.state.params.title}`,
-         headerTitleStyle: {
-             fontFamily: 'open-sans-regular',
-             fontSize: 20,
-             marginLeft: -30, 
-             marginRight: -30, 
-             textAlign: 'left',
-             alignSelf: 'center',
-             color: Colors.VBSBlue
-            },
-            headerStyle: {
-                backgroundColor: 'white',
-            },
-        });
+    // static navigationOptions = ({ navigation }) => ({
+    //     title: `${navigation.state.params.title}`,
+    //      headerTitleStyle: {
+    //          fontFamily: 'open-sans-regular',
+    //          fontSize: 20,
+    //          marginLeft: -30, 
+    //          marginRight: -30, 
+    //          textAlign: 'left',
+    //          alignSelf: 'center',
+    //          color: Colors.VBSBlue
+    //         },
+    //         headerStyle: {
+    //             backgroundColor: 'white',
+    //         },
+    //     });
 
     constructor(props) {
         super(props);
