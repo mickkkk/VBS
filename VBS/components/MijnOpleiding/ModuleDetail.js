@@ -3,11 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
 import Colors from '../../constants/Colors';
+import Panel from './Panel';
 
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
@@ -34,28 +36,40 @@ export default class ModuleDetail extends React.Component {
 
   
   render() {
-    const { titel, beschrijving } = this.props.module;
+    const { introductie, lesstof, geluidsfragment, oefentoetsen, reacties } = this.props.module;
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.rooster}>{titel}</Text>
-        <Text style={styles.rooster}>{beschrijving}</Text>
-    </View>
+      <ScrollView style={styles.container}>
+        <Panel title="Introductie">
+          <Text style={styles.body}>{introductie}</Text>
+        </Panel>
+        <Panel title="Lesstof">
+          <Text style={styles.body}>{lesstof}</Text>
+        </Panel>
+        <Panel title="Geluidsfragmenten">
+          <Text style={styles.body}>{geluidsfragment}</Text>
+        </Panel>
+        <Panel title="Oefentoetsen">
+          <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
+        </Panel>
+        <Panel title="Reacties">
+          <Text style={styles.body}>{reacties.reactie1.naam}</Text>
+        </Panel>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    rooster: {
-    fontSize: 20, 
-    fontFamily: 'open-sans-semi-bold',
-    marginLeft: 0,
-    color: Colors.VBSBlue,
-    textAlign: 'center',
-    },
     container: {
-        backgroundColor: 'white',
-        paddingTop: 40,
         paddingBottom: 10,
-    }
+        flex: 1,
+        backgroundColor: '#F4F4F4',
+        paddingTop: 10
+    },
+    body: {
+      fontSize: 11,
+      color: 'black',
+      fontFamily: 'open-sans-regular'
+  }
 });

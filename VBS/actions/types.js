@@ -5,3 +5,5 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 
 export const MODULES_FETCH_SUCCESS = 'modules_fetch_success';
+
+export const CIJFERS_FETCH_SUCCESS = 'cijfers_fetch_success';

@@ -3,36 +3,25 @@ import { Text, View, Image, TouchableWithoutFeedback, StyleSheet, Platform } fro
 import { Actions } from 'react-native-router-flux';
 import Colors from '../constants/Colors';
 
+import Panel from './MijnOpleiding/Panel';
+
 
 const Arrow = require('../assets/images/arrow.png');
 
 
-class ModuleListItem extends Component {
-    onRowPress() {
-        Actions.moduleDetail({ module: this.props.module });
-    }
+class CijferListItem extends Component {
+    // onRowPress() {
+    //     Actions.moduleDetail({ module: this.props.module });
+    // }
 
 
     render() {
-        const { titel, beschrijving } = this.props.module;
-        console.log(titel, 'log title ModulesListItem');
+        const { vak, cijfer } = this.props.cijfer;
+        //console.log(titel, 'log title ModulesListItem');
         return (
-            <View style={styles.day}>
-                <TouchableWithoutFeedback 
-                    onPress={this.onRowPress.bind(this)} 
-                    underlayColor="white"
-                >
-                    <View style={styles.item}>
-                        <View style={styles.module}>
-                            <Text style={styles.title}>{titel}</Text>
-                            <Text style={styles.subtitle}>
-                            {beschrijving}
-                            </Text>
-                        </View>
-                        <Image style={styles.img} source={Arrow} />
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
+        <Panel title={vak}>
+            <Text style={styles.body}>{cijfer}</Text>
+        </Panel>
         );
     }
 }
@@ -201,4 +190,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ModuleListItem;
+export default CijferListItem;

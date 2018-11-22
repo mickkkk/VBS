@@ -4,7 +4,6 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from 'react-native-underline-tabbar';
 
 import React from 'react';
-import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
 import Modules from '../components/MijnOpleiding/Modules';
@@ -58,22 +57,25 @@ export default class MijnOpleidingScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container}>
         <ScrollableTabView
+          style={styles.container}
           tabBarActiveTextColor={Colors.VBSBlue}
           tabBarUnderlineStyle={'red'}
           tabBarPosition={'top'}
+          tabBarBackgroundColor='white'
           renderTabBar={() => <TabBar 
             underlineColor={Colors.VBSBlue}
             underlineHeight={3}
             tabMargin={0}
-            tabBarTextStyle={{ fontSize: 18, fontFamily: 'open-sans-regular' }}
+            tabBarPosition="top"
+            tabBarTextStyle={{ paddingTop: 10, fontSize: 18, fontFamily: 'open-sans-regular' }}
           />}
         >
           <Modules 
             tabLabel={{ label: '         Modules         ' }} 
-            name="1" 
-            navigation={this.props.navigation} 
           />
-          <Cijfers tabLabel={{ label: '         Cijfers         ' }} name="17" />
+          <Cijfers 
+            tabLabel={{ label: '         Cijfers         ' }} 
+          />
         </ScrollableTabView>
         </ScrollView>
       </View>
@@ -84,8 +86,8 @@ export default class MijnOpleidingScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 0,
-    backgroundColor: '#fff',
+    marginTop: -5,
+    backgroundColor: '#f4f4f4',
   },
   rooster: {
     fontSize: 20, 

@@ -11,11 +11,15 @@ import Spinner from './Spinner';
 
 class LoginForm extends Component {
     onEmailChange(text) {
-        this.props.emailChanged(text);
+        //this.props.emailChanged(text);
+        //even voor snellere login, WEGHALEN STRAKS
+        this.props.emailChanged('test@test.com');
     }
 
     onPasswordChange(text) {
-        this.props.passwordChanged(text);
+        //this.props.passwordChanged(text);
+        //even voor snellere login, WEGHALEN STRAKS
+        this.props.passwordChanged('password');
     }
 
     onButtonPress() {

@@ -1,14 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import {
-  Image,
   Platform,
   StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  FlatList,
-  ListView
+  ListView,
+  View
 } from 'react-native';
 import { Font, AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -19,7 +15,6 @@ import Colors from '../../constants/Colors';
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
-const Arrow = require('../../assets/images/arrow.png');
 
 
 class Modules extends React.Component {
@@ -47,13 +42,9 @@ class Modules extends React.Component {
   }
 
  componentWillReceiveProps(nextProps) {
+     console.log(nextProps, 'componentreceiveProps modules');
      this.createDataSource(nextProps);
  }
-
-onPressModule = (titleMod) => {
-      this.props.navigation.navigate('Module', { title: titleMod });
-      //this.props.navigation.push('Rooster');
-}
 
  createDataSource({ modules }) {
      const ds = new ListView.DataSource({
@@ -64,43 +55,25 @@ onPressModule = (titleMod) => {
  }
 
 renderRow(module) {
-    console.log(module, 'log module');
+    console.log(module, 'module renderRow');
     return <ModuleListItem module={module} />;
 }
  
   render() {
-         if (!this.state.fontLoaded) {
-             return <AppLoading />;
-             }
-            console.log(this.props.modules, 'log render Modules');
-            return (
-                <ListView
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this.renderRow}
-                    //keyExtractor={item => item.index}
-                />
-            //     <View style={styles.container}>
-            //         {/* <Text>Week {this.props.name}!</Text> */}
-            //         <View style={styles.day}>
-            //             <TouchableHighlight 
-            //                 onPress={() => this.onPressModule('Kern Business Case')} 
-            //                 underlayColor="white"
-            //             >
-            //                 <View style={styles.item}>
-            //                     <View style={styles.module}>
-            //                         <Text style={styles.title}>Kernmodule Business Case</Text>
-            //                         <Text style={styles.subtitle}>
-            //                         Korte uitleg over deze module. 
-            //                         In één a twee zinnen waar het over gaat. 
-            //                         Dus het word maximaal zo groot als dit voorbeeld.
-            //                         </Text>
-            //                     </View>
-            //                     <Image style={styles.img} source={Arrow} />
-            //                 </View>
-            //             </TouchableHighlight>
-            //         </View>
-            //   </View>
+    console.log(this.props, 'props module');
+    if (!this.state.fontLoaded) {
+        return <AppLoading />;
+        }
+    return (
+        <View style={styles.container}>
+            <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+            //keyExtractor={item => item.index}
+            />
+        </View>
+        
     );
   }
 }
@@ -182,7 +155,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#F4F4F4',
+        //backgroundColor: 'red',
         paddingTop: 5,
     },
     developmentModeText: {
@@ -270,6 +243,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+    console.log(state, 'mapstatetoprops modules');
     const modules = _.map(state.modules, (val, uid) => {
         return { ...val, uid }; 
     });
