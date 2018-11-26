@@ -42,7 +42,6 @@ class Modules extends React.Component {
   }
 
  componentWillReceiveProps(nextProps) {
-     console.log(nextProps, 'componentreceiveProps modules');
      this.createDataSource(nextProps);
  }
 
@@ -54,8 +53,7 @@ class Modules extends React.Component {
      this.dataSource = ds.cloneWithRows(modules);
  }
 
-renderRow(module) {
-    console.log(module, 'module renderRow');
+renderRow(module) {    
     return <ModuleListItem module={module} />;
 }
  

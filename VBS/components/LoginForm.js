@@ -46,7 +46,7 @@ class LoginForm extends Component {
         }
 
         return (
-            <Button onPress={this.onButtonPress.bind(this)}>
+            <Button style={styles.button} onPress={this.onButtonPress.bind(this)}>
              Login
             </Button>
         );   
@@ -57,7 +57,6 @@ class LoginForm extends Component {
             <Card>
                 <CardSection>
                     <Input
-                        label="Email"
                         placeholder="email@gmail.com"
                         onChangeText={this.onEmailChange.bind(this)}
                         value={this.props.email}
@@ -67,8 +66,7 @@ class LoginForm extends Component {
                 <CardSection>
                     <Input
                         secureTextEntry
-                        label="Password"
-                        placeholder="password"
+                        placeholder="Wachtwoord"
                         onChangeText={this.onPasswordChange.bind(this)}
                         value={this.props.password}
                     />
@@ -89,7 +87,7 @@ const styles = {
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
-    }
+    },
 };
 
 const mapStateToProps = ({ auth }) => {

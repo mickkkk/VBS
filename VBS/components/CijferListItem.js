@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableWithoutFeedback, StyleSheet, Platform } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Text, StyleSheet, Platform } from 'react-native';
 import Colors from '../constants/Colors';
 
 import Panel from './MijnOpleiding/Panel';
 
-
-const Arrow = require('../assets/images/arrow.png');
-
-
 class CijferListItem extends Component {
-    // onRowPress() {
-    //     Actions.moduleDetail({ module: this.props.module });
-    // }
-
-
     render() {
         const { vak, cijfer } = this.props.cijfer;
-        //console.log(titel, 'log title ModulesListItem');
         return (
         <Panel title={vak}>
             <Text style={styles.body}>{cijfer}</Text>

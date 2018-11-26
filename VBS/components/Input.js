@@ -1,18 +1,20 @@
 import React from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 
-const Input = ({ label, value, onChangeText, secureTextEntry, placeholder }) => {
-    const { inputStyle, labelStyle, containerStyle } = styles;
+const Input = ({ value, onChangeText, secureTextEntry, placeholder }) => {
+    const { inputStyle, containerStyle } = styles;
 
     return (
         <View style={containerStyle}>
-            <Text style={labelStyle}>{label}</Text>
             <TextInput
                 secureTextEntry={secureTextEntry}
                 style={inputStyle}
                 value={value}
                 onChangeText={onChangeText}
+                placeholderTextColor={'red'}
                 placeholder={placeholder}
+                //placeholderStyle={{ color: 'red' }}
+                
             />
         </View>
     );
@@ -20,17 +22,13 @@ const Input = ({ label, value, onChangeText, secureTextEntry, placeholder }) => 
 
 const styles = {
     inputStyle: {
-        color: '#000',
+        color: '#fff',
         paddingRight: 5,
         paddingLeft: 5,
         fontSize: 18,
         lineHeight: 21,
-        flex: 2
-    },
-    labelStyle: {
-        fontSize: 18,
-        paddingLeft: 20,
-        flex: 1
+        flex: 2,
+        placeholderTextColor: '#fff'
     },
     containerStyle: {
         height: 40,

@@ -3,7 +3,6 @@ import { Text, View, Image, TouchableWithoutFeedback, StyleSheet, Platform } fro
 import { Actions } from 'react-native-router-flux';
 import Colors from '../constants/Colors';
 
-
 const Arrow = require('../assets/images/arrow.png');
 
 
@@ -12,10 +11,8 @@ class ModuleListItem extends Component {
         Actions.moduleDetail({ module: this.props.module });
     }
 
-
     render() {
         const { titel, beschrijving } = this.props.module;
-        console.log(titel, 'log title ModulesListItem');
         return (
             <View style={styles.day}>
                 <TouchableWithoutFeedback 
@@ -66,8 +63,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         overflow: 'hidden',
-        
-        
     },
     header: {
         backgroundColor: 'white',
@@ -85,9 +80,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-start',
-        //justifyContent: 'space-between',
         paddingVertical: 20,
-        //paddingHorizontal: 0,
     },
     time: {
         fontSize: 11,
@@ -95,7 +88,6 @@ const styles = StyleSheet.create({
         marginTop: 11,
         fontFamily: 'open-sans-regular',
         color: Colors.VBSBlue,
-        //flexGrow:1,
     },
     title: {
         fontFamily: 'open-sans-bold',
@@ -107,8 +99,6 @@ const styles = StyleSheet.create({
         fontSize: 11,
     },
     module: {
-        //backgroundColor: "green",
-        //flexGrow: 2,
         marginLeft: 12,
         marginRight: 30,
     },
