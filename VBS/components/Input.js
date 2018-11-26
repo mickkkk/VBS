@@ -11,10 +11,8 @@ const Input = ({ value, onChangeText, secureTextEntry, placeholder }) => {
                 style={inputStyle}
                 value={value}
                 onChangeText={onChangeText}
-                placeholderTextColor={'red'}
                 placeholder={placeholder}
-                //placeholderStyle={{ color: 'red' }}
-                
+                placeholderTextColor={'rgba(255,255,255,0.5)'}
             />
         </View>
     );
@@ -28,7 +26,6 @@ const styles = {
         fontSize: 18,
         lineHeight: 21,
         flex: 2,
-        placeholderTextColor: '#fff'
     },
     containerStyle: {
         height: 40,

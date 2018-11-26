@@ -18,11 +18,13 @@ const styles = {
         //shadowOpacity: 0.1,
         //shadowRadius: 2,
         flex: 1,
-        elevation: 1,
+        flexDirection: 'column',
+        //elevation: 1,
         marginLeft: 5,
         marginRight: 5,
         marginTop: 100,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 };
 

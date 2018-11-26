@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 //import { Card, CardSection, Input, Button } from './Common';
@@ -8,6 +8,8 @@ import CardSection from './CardSection';
 import Input from './Input';
 import Button from './Button';
 import Spinner from './Spinner';
+
+const background = require('../assets/images/Background_login.png');
 
 class LoginForm extends Component {
     onEmailChange(text) {
@@ -46,38 +48,42 @@ class LoginForm extends Component {
         }
 
         return (
-            <Button style={styles.button} onPress={this.onButtonPress.bind(this)}>
-             Login
+            <Button onPress={this.onButtonPress.bind(this)}>
+             INLOGGEN
             </Button>
         );   
     }
     
     render() {
         return (
-            <Card>
-                <CardSection>
-                    <Input
-                        placeholder="email@gmail.com"
-                        onChangeText={this.onEmailChange.bind(this)}
-                        value={this.props.email}
-                    />
-                </CardSection>
+            <ImageBackground
+                source={background}
+                style={{ width: '100%', height: '100%' }}
+            >
+                <Card style={styles.card}>
+                    <CardSection>
+                        <Input
+                            placeholder="email@gmail.com"
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
+                        />
+                    </CardSection>
 
-                <CardSection>
-                    <Input
-                        secureTextEntry
-                        placeholder="Wachtwoord"
-                        onChangeText={this.onPasswordChange.bind(this)}
-                        value={this.props.password}
-                    />
-                </CardSection>
+                    <CardSection>
+                        <Input
+                            secureTextEntry
+                            placeholder="Wachtwoord"
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
+                        />
+                    </CardSection>
 
-                {this.renderError()}
+                    {this.renderError()}
 
-                <CardSection>
                     {this.renderButton()}
-                </CardSection>
-            </Card>
+                    
+                </Card>
+            </ImageBackground>
         );
     }
 }
