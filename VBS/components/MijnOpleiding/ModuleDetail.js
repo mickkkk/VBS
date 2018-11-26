@@ -7,9 +7,14 @@ import {
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import TabBar from 'react-native-underline-tabbar';
 
 import Colors from '../../constants/Colors';
 import Panel from './Panel';
+
+import Content from './Content';
+import Flipped from './Flipped';
 
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
@@ -36,26 +41,37 @@ export default class ModuleDetail extends React.Component {
 
   
   render() {
-    const { introductie, lesstof, geluidsfragment, oefentoetsen, reacties } = this.props.module;
+   // const { introductie, lesstof, geluidsfragment, oefentoetsen, reacties } = this.props.module;
 
     return (
-      <ScrollView style={styles.container}>
-        <Panel title="Introductie">
-          <Text style={styles.body}>{introductie}</Text>
-        </Panel>
-        <Panel title="Lesstof">
-          <Text style={styles.body}>{lesstof}</Text>
-        </Panel>
-        <Panel title="Geluidsfragmenten">
-          <Text style={styles.body}>{geluidsfragment}</Text>
-        </Panel>
-        <Panel title="Oefentoetsen">
-          <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
-        </Panel>
-        <Panel title="Reacties">
-          <Text style={styles.body}>{reacties.reactie1.naam}</Text>
-        </Panel>
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView style={styles.tabbar}>
+        <ScrollableTabView
+          style={styles.tabview}
+          tabBarActiveTextColor={Colors.VBSBlue}
+          tabBarUnderlineStyle={'red'}
+          tabBarPosition={'top'}
+          tabBarBackgroundColor='white'
+          renderTabBar={() => <TabBar 
+            underlineColor={Colors.VBSBlue}
+            underlineHeight={3}
+            tabMargin={0}
+            tabBarPosition="top"
+            tabBarTextStyle={{ paddingTop: 10, fontSize: 18, fontFamily: 'open-sans-regular' }}
+          />}
+        >
+          <Content 
+          tabLabel={{ label: '         Content         ' }}
+           module={this.props.module} 
+          />
+          
+          <Flipped 
+            tabLabel={{ label: 'Flipped Classroom' }}
+            module={this.props.module} 
+          />
+        </ScrollableTabView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -65,11 +81,17 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         flex: 1,
         backgroundColor: '#F4F4F4',
-        paddingTop: 10
     },
     body: {
       fontSize: 11,
       color: 'black',
       fontFamily: 'open-sans-regular'
-  }
+  },
+  tabbar: {
+    flex: 1,
+    backgroundColor: '#F4F4F4',
+  },
+  tabview: {
+      marginTop: -15
+  },
 });

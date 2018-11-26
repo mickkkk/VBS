@@ -28,8 +28,7 @@ class Cijfers extends React.Component {
   }
 
   componentWillMount() {
-      this.props.cijfersFetch();
-      console.log(this.props, 'cwillmount props');   
+      this.props.cijfersFetch(); 
       this.createDataSource(this.props);
   }
 
@@ -40,14 +39,12 @@ class Cijfers extends React.Component {
         'open-sans-semi-bold': OpenSansSemiBold,
       });
       this.setState({ fontLoaded: true });
-      console.log(this.props, 'props did mount');
     } catch (error) {
       console.log(error);
     }
   }
 
  componentWillReceiveProps(nextProps) {
-    console.log(nextProps, 'nextProps');
     this.createDataSource(nextProps);
  }
 
@@ -60,14 +57,10 @@ class Cijfers extends React.Component {
  }
 
 renderRow(cijfer) {
-    console.log(cijfer, 'cijfer renderRow');
-    //const { kbc, vastgoedwaarde } = this.props.cijfers;
     return <CijferListItem cijfer={cijfer} />;
 }
  
   render() {
-    console.log(this.props, 'props render cijfers');
-
     if (!this.state.fontLoaded) {
         return <AppLoading />;
         }

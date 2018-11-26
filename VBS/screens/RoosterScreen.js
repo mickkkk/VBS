@@ -18,10 +18,6 @@ const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 
 export default class RoosterScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
   constructor(props) {
     super(props);
     this.state = { fontLoaded: false };

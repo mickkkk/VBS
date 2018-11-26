@@ -40,15 +40,15 @@ export default class Header extends React.Component {
 
 const styles = StyleSheet.create({
     rooster: {
-    fontSize: 20, 
-    fontFamily: 'open-sans-semi-bold',
-    marginLeft: 0,
-    color: Colors.VBSBlue,
-    textAlign: 'center',
+      fontSize: 20, 
+      fontFamily: 'open-sans-semi-bold',
+      marginLeft: 0,
+      color: Colors.VBSBlue,
+      textAlign: 'center',
     },
     container: {
-        backgroundColor: 'white',
-        paddingTop: 40,
-        paddingBottom: 10,
+      backgroundColor: 'white',
+      paddingTop: 40,
+      paddingBottom: 10,
     }
 });

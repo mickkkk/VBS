@@ -5,6 +5,7 @@ import TabBar from 'react-native-underline-tabbar';
 
 import React from 'react';
 import Colors from '../constants/Colors';
+import Header from '../components/Header';
 
 import Modules from '../components/MijnOpleiding/Modules';
 import Cijfers from '../components/MijnOpleiding/Cijfers';
@@ -55,9 +56,10 @@ export default class MijnOpleidingScreen extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container}>
+        <Header headerText="Mijn Opleiding" />
+        <ScrollView style={styles.tabbar}>
         <ScrollableTabView
-          style={styles.container}
+          style={styles.tabview}
           tabBarActiveTextColor={Colors.VBSBlue}
           tabBarUnderlineStyle={'red'}
           tabBarPosition={'top'}
@@ -86,8 +88,15 @@ export default class MijnOpleidingScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: -5,
-    backgroundColor: '#f4f4f4',
+    marginTop: 0,
+    backgroundColor: 'green',
+  },
+  tabbar: {
+    flex: 1,
+    backgroundColor: '#F4F4F4',
+  },
+  tabview: {
+    marginTop: -15
   },
   rooster: {
     fontSize: 20, 

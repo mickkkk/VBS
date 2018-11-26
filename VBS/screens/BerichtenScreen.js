@@ -41,6 +41,7 @@ export default class BerichtenScreen extends React.Component {
     }
     return (
       <View style={styles.container}>
+        <Header headerText="Berichten" />
         <View style={styles.day}>
             <TouchableHighlight 
               onPress={this.onPressChat.bind(this)} 
