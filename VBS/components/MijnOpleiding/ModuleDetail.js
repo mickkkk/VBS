@@ -61,8 +61,8 @@ export default class ModuleDetail extends React.Component {
           />}
         >
           <Content 
-          tabLabel={{ label: '         Content         ' }}
-           module={this.props.module} 
+            tabLabel={{ label: '         Content         ' }}
+            module={this.props.module} 
           />
           
           <Flipped 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, View, Image } from 'react-native';
+import { Platform, Image } from 'react-native';
 import { Scene, Router, Stack } from 'react-native-router-flux';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -32,6 +32,7 @@ const RouterComponent = () => {
                         component={RoosterScreen} 
                         hideNavBar 
                         title="Rooster"
+                        activeTintColor='green'
                         icon={({ focused }) => (
                             <TabBarIcon
                               focused={focused}
@@ -63,12 +64,19 @@ const RouterComponent = () => {
                             component={BerichtenScreen} 
                             hideNavBar
                         />
-                        <Scene key="chat" component={Chat} title="Klas N21" />
+                        <Scene 
+                            key="chat" 
+                            component={Chat} 
+                            title="Klas N21"
+                            backButtonTintColor={Colors.VBSBlue}
+                            backButtonTextStyle={{ }}
+                        />
                     </Stack>
                     <Stack 
                         key="mijnOpleiding" 
                         title="Mijn Opleiding"
                         icon={ 
+                            // eslint-disable-next-line no-confusing-arrow
                             ({ focused }) =>
                                 focused ? (
                                 <Image
@@ -98,7 +106,15 @@ const RouterComponent = () => {
                             component={MijnOpleidingScreen}
                             hideNavBar
                         />
-                        <Scene key="moduleDetail" component={ModuleDetail} title="Detail" />
+                        <Scene 
+                            key="moduleDetail" 
+                            component={ModuleDetail} 
+                            title="Detail"
+                            backButtonTintColor={Colors.VBSBlue}
+                            headerBackTitle={'res'}
+                            navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            backButtonTextStyle={{ }}
+                        />
                     </Stack>
                     <Scene 
                         key="account" 
@@ -124,4 +140,5 @@ const RouterComponent = () => {
         </Router>
     );
 };
+
 export default RouterComponent;
