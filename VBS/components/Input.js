@@ -1,18 +1,24 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 
-const Input = ({ value, onChangeText, secureTextEntry, placeholder }) => {
+const Input = ({ 
+    value, 
+    onChangeText,
+    secureTextEntry, 
+    placeholder, 
+    placeholderTextColor, 
+    style }) => {
     const { inputStyle, containerStyle } = styles;
 
     return (
         <View style={containerStyle}>
             <TextInput
                 secureTextEntry={secureTextEntry}
-                style={inputStyle}
+                style={style || inputStyle}
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
-                placeholderTextColor={'rgba(255,255,255,0.5)'}
+                placeholderTextColor={placeholderTextColor || 'rgba(255,255,255,0.5)'}
             />
         </View>
     );

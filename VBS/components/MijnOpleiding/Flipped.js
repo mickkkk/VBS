@@ -1,23 +1,39 @@
+import _ from 'lodash';
 import React from 'react';
 import {
+  Platform,
   StyleSheet,
-  Text,
-  ScrollView
+  ListView,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Text
 } from 'react-native';
-import { Font } from 'expo';
+import { Font, AppLoading } from 'expo';
+import { connect } from 'react-redux';
+
 import { Actions } from 'react-native-router-flux';
 
-import Panel from './Panel';
-
+import { flippedFetch, flippedCreate } from '../../actions';
+import FlippedListItem from '../FlippedListItem';
+import Colors from '../../constants/Colors';
+import Button from '../Button';
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
-export default class Flipped extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { fontLoaded: false };
-    }
+
+class Flipped extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { fontLoaded: false };
+  }
+
+  componentWillMount() {
+      this.props.flippedFetch(this.props.module.uid);
+
+      this.createDataSource(this.props);
+  }
 
   async componentDidMount() {
     try {
@@ -29,45 +45,94 @@ export default class Flipped extends React.Component {
     } catch (error) {
       console.log(error);
     }
-    Actions.refresh({ title: this.props.module.titel });
   }
 
-  
-  render() {
-    const { introductie, lesstof, geluidsfragment, oefentoetsen, reacties } = this.props.module;
+ componentWillReceiveProps(nextProps) {
+     this.createDataSource(nextProps);
+     console.log(nextProps, 'this.props nextprops flipped');
+ }
 
+ onButtonPress() {
+    const { uid } = this.props.module;
+
+    Actions.flippedCreate({ uid });
+ }
+
+ createDataSource({ flipped }) {
+     const ds = new ListView.DataSource({
+         rowHasChanged: (r1, r2) => r1 !== r2
+     });
+
+     this.dataSource = ds.cloneWithRows(flipped);
+ }
+
+renderRow(flipped) {    
+  return <FlippedListItem flipped={flipped} />;
+}
+ 
+  render() {
+    if (!this.state.fontLoaded) {
+        return <AppLoading />;
+        }
     return (
-      <ScrollView style={styles.container}>
-        <Panel title="Flippie">
-          <Text style={styles.body}>{introductie}</Text>
-        </Panel>
-        <Panel title="Flippie">
-          <Text style={styles.body}>{lesstof}</Text>
-        </Panel>
-        <Panel title="Flippie">
-          <Text style={styles.body}>{geluidsfragment}</Text>
-        </Panel>
-        <Panel title="Oefentoetsen">
-          <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
-        </Panel>
-        <Panel title="Reacties">
-          <Text style={styles.body}>{reacties.reactie1.naam}</Text>
-        </Panel>
-      </ScrollView>
+        <View style={styles.container}>
+        <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
+            <Text style={styles.textStyle}> 
+                VOEG ARTIKEL TOE
+            </Text>
+        </TouchableOpacity>
+            
+                <ListView
+                style={styles.listview}
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+                //keyExtractor={item => item.index}
+                />
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+    listview: {
+        //flex: 1,
+        marginBottom: 10
+    },
     container: {
-        paddingBottom: 10,
         flex: 1,
         backgroundColor: '#F4F4F4',
-        paddingTop: 10
+        //paddingTop: 5,
     },
-    body: {
-      fontSize: 11,
-      color: 'black',
-      fontFamily: 'open-sans-regular'
-  }
+    buttonStyle: {
+        flex: 1,
+        //alignSelf: 'stretch',
+        //backgroundColor: '#F64404',
+        alignSelf: 'flex-end',
+        //borderRadius: 5,
+        maxHeight: 20,
+        margin: 5,
+        //width: 269,
+        
+    },
+    textStyle: {
+        alignSelf: 'center',
+        color: Colors.VBSBlue,
+        fontSize: 12,
+        fontWeight: '600',
+        paddingTop: 10,
+        paddingBottom: 13
+    }
 });
+
+const mapStateToProps = state => {
+    const flipped = _.map(state.flipped, (val, uid) => {
+        return { ...val, uid }; 
+    });
+
+    const { titel, auteur, beschrijving } = state.flipped;
+
+    return { flipped, titel, auteur, beschrijving };
+};
+
+export default connect(mapStateToProps, { flippedFetch, flippedCreate })(Flipped);

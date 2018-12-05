@@ -64,24 +64,22 @@ renderRow(module) {
         return <AppLoading />;
         }
     return (
-        <ScrollView style={styles.container}>
             <ListView
+            style={styles.listview}
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
             //keyExtractor={item => item.index}
             />
-        </ScrollView>
-        
     );
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 2,
+    listview: {
+        flex: 1,
         //backgroundColor: 'red',
-        paddingTop: 5,
+        //paddingTop: 5,
     }
 });
 

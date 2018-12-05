@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Image } from 'react-native';
-import { Scene, Router, Stack } from 'react-native-router-flux';
+import { Scene, Router, Stack, Actions } from 'react-native-router-flux';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import LoginForm from './components/LoginForm';
@@ -9,11 +9,13 @@ import Chat from './components/Berichten/Chat';
 import BerichtenScreen from './screens/BerichtenScreen';
 import MijnOpleidingScreen from './screens/MijnOpleidingScreen';
 import ModuleDetail from './components/MijnOpleiding/ModuleDetail';
+import FlippedDetail from './components/MijnOpleiding/FlippedDetail';
+import FlippedCreate from './components/MijnOpleiding/FlippedCreate';
 import AccountScreen from './screens/AccountScreen';
-
 
 import Colors from './constants/Colors';
 import TabBarIcon from './components/TabBarIcon';
+//import { Actions } from 'react-native-gifted-chat';
 
 const VBSLogo = require('./assets/images/vbs.png');
 const VBSLogoUnfocused = require('./assets/images/vbs_unfocused.png');
@@ -107,9 +109,29 @@ const RouterComponent = () => {
                             hideNavBar
                         />
                         <Scene 
+                            //rightTitle="+"
+                            //onRight={() => { Actions.flippedCreate(); }}
                             key="moduleDetail" 
                             component={ModuleDetail} 
                             title="Detail"
+                            backButtonTintColor={Colors.VBSBlue}
+                            headerBackTitle={'res'}
+                            navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            backButtonTextStyle={{ }}
+                        />
+                        <Scene 
+                            key="flippedDetail" 
+                            component={FlippedDetail} 
+                            title="Detail"
+                            backButtonTintColor={Colors.VBSBlue}
+                            headerBackTitle={'res'}
+                            navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            backButtonTextStyle={{ }}
+                        />
+                        <Scene 
+                            key="flippedCreate" 
+                            component={FlippedCreate} 
+                            title="Voeg artikel toe"
                             backButtonTintColor={Colors.VBSBlue}
                             headerBackTitle={'res'}
                             navigationBarStyle={{ borderBottomColor: 'transparent' }}

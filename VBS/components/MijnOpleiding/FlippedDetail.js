@@ -2,8 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  ScrollView,
-  View
+  ScrollView
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
@@ -30,31 +29,24 @@ export default class Content extends React.Component {
     } catch (error) {
       console.log(error);
     }
-    Actions.refresh({ title: this.props.module.titel });
+    Actions.refresh({ title: this.props.flipped.titel });
   }
 
   
   render() {
-    const { introductie, lesstof, geluidsfragment, oefentoetsen, reacties } = this.props.module;
+    const { titel, auteur, beschrijving } = this.props.flipped;
 
     return (
       <ScrollView style={styles.container}>
-        <Panel title="Introductie">
-          <Text style={styles.body}>{introductie}</Text>
+        <Panel title="titel">
+          <Text style={styles.body}>{titel}</Text>
         </Panel>
-        <Panel title="Lesstof">
-          <Text style={styles.body}>{lesstof}</Text>
+        <Panel title="auteur">
+          <Text style={styles.body}>{auteur}</Text>
         </Panel>
-        <Panel title="Geluidsfragmenten">
-          <Text style={styles.body}>{geluidsfragment}</Text>
+        <Panel title="Beschrijving">
+          <Text style={styles.body}>{beschrijving}</Text>
         </Panel>
-        <Panel title="Oefentoetsen">
-          <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
-        </Panel>
-        <Panel title="Reacties">
-          <Text style={styles.body}>{reacties.reactie1.naam}</Text>
-        </Panel>
-        <View style={{ marginBottom: 15 }} />
       </ScrollView>
     );
   }
@@ -62,11 +54,10 @@ export default class Content extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      marginBottom: 10,
-      flex: 1,
-      backgroundColor: '#F4F4F4',
-      paddingTop: 10,
-      paddingBottom: 10
+        paddingBottom: 10,
+        flex: 1,
+        backgroundColor: '#F4F4F4',
+        paddingTop: 10
     },
     body: {
       fontSize: 11,

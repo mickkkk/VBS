@@ -7,3 +7,8 @@ export const LOGIN_USER = 'login_user';
 export const MODULES_FETCH_SUCCESS = 'modules_fetch_success';
 
 export const CIJFERS_FETCH_SUCCESS = 'cijfers_fetch_success';
+
+export const FLIPPED_FETCH_SUCCESS = 'flipped_fetch_succes';
+export const FLIPPED_UPDATE = 'flipped_update';
+export const FLIPPED_CREATE = 'flipped_create';
+

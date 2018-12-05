@@ -43,11 +43,6 @@ export default class MijnOpleidingScreen extends React.Component {
     }
   };
 
-  _onPressModule = () => {
-    this.props.navigation.navigate('Module');
-    //this.props.navigation.push('Rooster');
-}
-
   render() {
     if (!this.state.fontLoaded) {
       return (
@@ -57,7 +52,6 @@ export default class MijnOpleidingScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Header headerText="Mijn Opleiding" />
-        <ScrollView style={styles.tabbar}>
         <ScrollableTabView
           style={styles.tabview}
           tabBarActiveTextColor={Colors.VBSBlue}
@@ -79,7 +73,6 @@ export default class MijnOpleidingScreen extends React.Component {
             tabLabel={{ label: '         Cijfers         ' }} 
           />
         </ScrollableTabView>
-        </ScrollView>
       </View>
     );
   }
@@ -89,13 +82,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 0,
-    backgroundColor: 'green',
-  },
-  tabbar: {
-    flex: 1,
     backgroundColor: '#F4F4F4',
   },
   tabview: {
+    flex: 1,
     marginTop: -15
   },
   rooster: {

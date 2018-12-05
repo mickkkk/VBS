@@ -45,7 +45,6 @@ export default class ModuleDetail extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.tabbar}>
         <ScrollableTabView
           style={styles.tabview}
           tabBarActiveTextColor={Colors.VBSBlue}
@@ -70,7 +69,6 @@ export default class ModuleDetail extends React.Component {
             module={this.props.module} 
           />
         </ScrollableTabView>
-        </ScrollView>
       </View>
     );
   }
@@ -78,20 +76,28 @@ export default class ModuleDetail extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: 10,
+        
         flex: 1,
-        backgroundColor: '#F4F4F4',
+        backgroundColor: 'red',
     },
     body: {
       fontSize: 11,
       color: 'black',
       fontFamily: 'open-sans-regular'
   },
-  tabbar: {
+  scrollview: {
     flex: 1,
     backgroundColor: '#F4F4F4',
   },
+  tabbar: {
+    flex: 1,
+    marginTop: -15,
+    backgroundColor: 'yellow'
+  },
   tabview: {
-      marginTop: -15
+      flex: 1,
+      height: 600,
+      backgroundColor: '#F4F4F4',
+      marginTop: -15,
   },
 });
