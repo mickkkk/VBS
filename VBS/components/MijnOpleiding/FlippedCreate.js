@@ -11,7 +11,6 @@ import Button from '../Button';
 
 class FlippedCreate extends Component {
     onButtonPress() {
-        console.log(this.props, 'log van props in flippedcreataa');
         const { titel, auteur, beschrijving, uid } = this.props;
 
         this.props.flippedCreate({ titel, auteur, beschrijving, uid });
@@ -20,7 +19,7 @@ class FlippedCreate extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Card>
+                <View style={styles.viewStyle}>
                     <View style={styles.containerStyle}>
                         <Input
                             label="Titel"
@@ -28,7 +27,9 @@ class FlippedCreate extends Component {
                             placeholder="Titel van artikel"
                             placeholderTextColor="#707070"
                             value={this.props.titel}
-                            onChangeText={value => this.props.flippedUpdate({ prop: 'titel', value })}
+                            onChangeText={
+                                value => this.props.flippedUpdate({ prop: 'titel', value })
+                            }
                         />
                     </View>
                     <View style={styles.containerStyle}>
@@ -38,7 +39,9 @@ class FlippedCreate extends Component {
                             style={styles.inputStyle}
                             placeholderTextColor="#707070"
                             value={this.props.auteur}
-                            onChangeText={value => this.props.flippedUpdate({ prop: 'auteur', value })}
+                            onChangeText={
+                                value => this.props.flippedUpdate({ prop: 'auteur', value })
+                            }
                         />
                     </View>
                     <View style={styles.containerStyle}>
@@ -48,7 +51,9 @@ class FlippedCreate extends Component {
                             style={styles.inputStyle}
                             placeholderTextColor="#707070"
                             value={this.props.beschrijving}
-                            onChangeText={value => this.props.flippedUpdate({ prop: 'beschrijving', value })}
+                            onChangeText={
+                                value => this.props.flippedUpdate({ prop: 'beschrijving', value })
+                            }
                         />
                     </View>
                     <CardSection>
@@ -56,7 +61,7 @@ class FlippedCreate extends Component {
                             Toevoegen
                         </Button>
                     </CardSection>
-                </Card>
+                </View>
             </View>
         );
     }
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: 5,
+        //marginTop: -250,
     },
     containerStyle: {
         borderBottomWidth: 1,
@@ -77,6 +82,16 @@ const styles = StyleSheet.create({
         borderColor: '#707070',
         position: 'relative',
         maxWidth: 269
+    },
+
+    viewStyle: {
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     inputStyle: {
         color: 'black',

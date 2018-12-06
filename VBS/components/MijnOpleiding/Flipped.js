@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         //borderRadius: 5,
         maxHeight: 20,
-        margin: 5,
+        marginRight: 10,
+        marginBottom: 10,
         //width: 269,
         
     },
@@ -129,6 +130,8 @@ const mapStateToProps = state => {
     const flipped = _.map(state.flipped, (val, uid) => {
         return { ...val, uid }; 
     });
+
+    flipped.reverse();
 
     const { titel, auteur, beschrijving } = state.flipped;
 
