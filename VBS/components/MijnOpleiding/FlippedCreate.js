@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { flippedUpdate, flippedCreate } from '../../actions';
 
@@ -8,12 +8,38 @@ import CardSection from '../CardSection';
 import Input from '../Input';
 import Button from '../Button';
 
+import Spinner from '../Spinner';
+
 
 class FlippedCreate extends Component {
     onButtonPress() {
-        const { titel, auteur, beschrijving, uid } = this.props;
+        const { inhoud, titel, auteur, beschrijving, uid } = this.props;
 
-        this.props.flippedCreate({ titel, auteur, beschrijving, uid });
+        this.props.flippedCreate({ inhoud, titel, auteur, beschrijving, uid });
+    }
+
+    renderError() {
+        if (this.props.error) {
+            return (
+                <View style={{ marginTop: 10 }}>
+                    <Text style={styles.errorTextStyle}>
+                        {this.props.error}
+                    </Text>
+                </View>
+            );
+        }
+    }
+
+    renderButton() {
+        if (this.props.loading) {
+            return <Spinner size="large" />;
+        }
+
+        return (
+            <Button onPress={this.onButtonPress.bind(this)}>
+                Toevoegen
+            </Button>
+        );   
     }
 
     render() {
@@ -56,11 +82,22 @@ class FlippedCreate extends Component {
                             }
                         />
                     </View>
-                    <CardSection>
-                        <Button onPress={this.onButtonPress.bind(this)}>
-                            Toevoegen
-                        </Button>
-                    </CardSection>
+
+                    <View style={styles.containerStyle}>
+                        <Input
+                            label="Inhoud"
+                            placeholder="Inhoud"
+                            style={styles.inputStyle}
+                            placeholderTextColor="#707070"
+                            value={this.props.inhoud}
+                            onChangeText={
+                                value => this.props.flippedUpdate({ prop: 'inhoud', value })
+                            }
+                        />
+                    </View>
+                    {this.renderError()}
+
+                    {this.renderButton()}
                 </View>
             </View>
         );
@@ -83,7 +120,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         maxWidth: 269
     },
-
     viewStyle: {
         flex: 1,
         flexDirection: 'column',
@@ -101,12 +137,17 @@ const styles = StyleSheet.create({
         lineHeight: 21,
         flex: 2,
     },
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'
+    },
 });
 
-const mapStateToProps = (state) => {
-    const { titel, auteur, beschrijving } = state.flipped;
+const mapStateToProps = ({ flipped }) => {
+    const { loading, error, inhoud, titel, auteur, beschrijving } = flipped;
 
-    return { titel, auteur, beschrijving };
+    return { error, loading, inhoud, titel, auteur, beschrijving };
 };
 
 export default connect(mapStateToProps, { flippedUpdate, flippedCreate })(FlippedCreate);

@@ -2,12 +2,14 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  ScrollView
+  ScrollView,
+  View
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
 import Panel from './Panel';
+import Button from '../Button';
 
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
@@ -34,20 +36,20 @@ export default class Content extends React.Component {
 
   
   render() {
-    const { titel, auteur, beschrijving } = this.props.flipped;
+    const { auteur, beschrijving, inhoud } = this.props.flipped;
 
     return (
-      <ScrollView style={styles.container}>
-        <Panel title="titel">
-          <Text style={styles.body}>{titel}</Text>
-        </Panel>
-        <Panel title="auteur">
-          <Text style={styles.body}>{auteur}</Text>
-        </Panel>
-        <Panel title="Beschrijving">
-          <Text style={styles.body}>{beschrijving}</Text>
-        </Panel>
-      </ScrollView>
+    <ScrollView style={styles.container}>
+      <Panel title="Inhoud">
+        <Text style={styles.body}>{inhoud}</Text>
+      </Panel>
+      <Panel title="Auteur">
+        <Text style={styles.body}>{auteur}</Text>
+      </Panel>
+      <Panel title="Beschrijving">
+        <Text style={styles.body}>{beschrijving}</Text>
+      </Panel>
+    </ScrollView>  
     );
   }
 }

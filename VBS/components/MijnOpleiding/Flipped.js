@@ -81,10 +81,8 @@ renderRow(flipped) {
                 VOEG ARTIKEL TOE
             </Text>
         </TouchableOpacity>
-            
                 <ListView
                 style={styles.listview}
-                enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this.renderRow}
                 //keyExtractor={item => item.index}

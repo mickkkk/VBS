@@ -11,4 +11,6 @@ export const CIJFERS_FETCH_SUCCESS = 'cijfers_fetch_success';
 export const FLIPPED_FETCH_SUCCESS = 'flipped_fetch_succes';
 export const FLIPPED_UPDATE = 'flipped_update';
 export const FLIPPED_CREATE = 'flipped_create';
+export const FLIPPED_CREATE_FAIL = 'flipped_create_fail';
+export const FLIPPED_CREATE_SUCCESS = 'flipped_create_success';
 

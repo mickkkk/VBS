@@ -22,8 +22,8 @@ class FlippedListItem extends Component {
                     <View style={styles.item}>
                         <View style={styles.module}>
                             <Text style={styles.title}>{titel}</Text>
-                            <Text style={styles.auteur}>{auteur}</Text>
-                            <Text style={styles.subtitle}>{beschrijving}</Text>
+                            <Text style={styles.subtitle}>{auteur}</Text>
+                            <Text style={styles.body}>{beschrijving}</Text>
                         </View>
                         <Image style={styles.img} source={Arrow} />
                     </View>
@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
         color: Colors.VBSBlue,
     },
     subtitle: {
+        fontFamily: 'open-sans-regular',
+        fontSize: 11,
+        color: Colors.VBSBlue,
+    },
+    body: {
         fontFamily: 'open-sans-regular',
         fontSize: 11,
     },
