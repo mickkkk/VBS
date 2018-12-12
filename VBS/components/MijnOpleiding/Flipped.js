@@ -26,7 +26,10 @@ const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 class Flipped extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { fontLoaded: false };
+    this.state = { 
+        fontLoaded: false,
+        uid: this.props.module.uid,
+    };
   }
 
   componentWillMount() {
@@ -54,6 +57,7 @@ class Flipped extends React.Component {
 
  onButtonPress() {
     const { uid } = this.props.module;
+    console.log(uid, 'btnPressuid');
 
     Actions.flippedCreate({ uid });
  }
@@ -65,9 +69,12 @@ class Flipped extends React.Component {
 
      this.dataSource = ds.cloneWithRows(flipped);
  }
-
-renderRow(flipped) {    
-  return <FlippedListItem flipped={flipped} />;
+ 
+renderRow(flipped) {   
+    console.log(flipped, 'props flipped renderRow');
+    const { uid } = this.props.module;
+    console.log(uid, 'uid render row');
+    return <FlippedListItem flipped={flipped} uid={uid} />;
 }
  
   render() {
@@ -84,7 +91,7 @@ renderRow(flipped) {
                 <ListView
                 style={styles.listview}
                 dataSource={this.dataSource}
-                renderRow={this.renderRow}
+                renderRow={this.renderRow.bind(this)}
                 //keyExtractor={item => item.index}
                 />
         </View>

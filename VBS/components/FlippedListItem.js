@@ -8,7 +8,7 @@ const Arrow = require('../assets/images/arrow.png');
 
 class FlippedListItem extends Component {
     onRowPress() {
-        Actions.flippedDetail({ flipped: this.props.flipped });
+        Actions.flippedDetail({ flipped: this.props.flipped, uid: this.props.uid });
     }
 
     render() {

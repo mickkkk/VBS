@@ -21,10 +21,6 @@ export const flippedCreate = ({ inhoud, titel, auteur, beschrijving, uid }) => {
         dispatch({ type: FLIPPED_CREATE });
 
         if (inhoud && titel && auteur && beschrijving !== undefined) {
-            console.log(titel, 'titel flipped create');
-            console.log(auteur, 'auteur flipped create');
-            console.log(beschrijving, 'beschrijving flipped create');
-            console.log(inhoud, 'inhoud flipped create');
             firebase.database().ref(`/modules/${uid}/flipped/`)
             .push({ inhoud, titel, auteur, beschrijving })
             .then(() => flippedCreateSuccess(dispatch));
@@ -54,5 +50,15 @@ export const flippedFetch = (uid) => {
             .on('value', snapshot => {
                 dispatch({ type: FLIPPED_FETCH_SUCCESS, payload: snapshot.val() });
             });
+    };
+};
+
+export const flippedDelete = ({ uidModule, uidFlipped }) => {
+    return () => {
+        firebase.database().ref(`/modules/${uidModule}/flipped/${uidFlipped}`)
+        .remove()
+        .then(() => {
+            Actions.pop();
+        });
     };
 };

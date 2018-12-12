@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
             display: 'flex',
             flexDirection: 'column',
             //marginTop: 5,
-            //marginLeft: 5,
-            //marginRight: 5,
+            marginLeft: 5,
+            marginRight: 5,
             //overflow: 'hidden',
     },
     line: {

@@ -7,18 +7,25 @@ import {
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { flippedDelete } from '../../actions';
 
 import Panel from './Panel';
 import Button from '../Button';
+import Confirm from '../Confirm';
+import CardSection from '../CardSection';
 
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
-export default class Content extends React.Component {
+class FlippedDetail extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { fontLoaded: false };
+      this.state = { 
+        fontLoaded: false,
+        showModal: false
+      };
     }
 
   async componentDidMount() {
@@ -34,6 +41,16 @@ export default class Content extends React.Component {
     Actions.refresh({ title: this.props.flipped.titel });
   }
 
+  onAccept() {
+    const uidFlipped = this.props.flipped.uid;
+    const uidModule = this.props.uid;
+    
+    this.props.flippedDelete({ uidModule, uidFlipped });
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
+  }
   
   render() {
     const { auteur, beschrijving, inhoud } = this.props.flipped;
@@ -49,6 +66,19 @@ export default class Content extends React.Component {
       <Panel title="Beschrijving">
         <Text style={styles.body}>{beschrijving}</Text>
       </Panel>
+      
+      <CardSection>
+        <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+          Verwijder Artikel
+        </Button>
+      </CardSection>
+      <Confirm
+        visible={this.state.showModal}
+        onAccept={this.onAccept.bind(this)}
+        onDecline={this.onDecline.bind(this)}
+      >
+        Weet je zeker dat je dit artikel wilt verwijderen?
+      </Confirm>
     </ScrollView>  
     );
   }
@@ -67,3 +97,5 @@ const styles = StyleSheet.create({
       fontFamily: 'open-sans-regular'
   }
 });
+
+export default connect(null, { flippedDelete })(FlippedDetail);

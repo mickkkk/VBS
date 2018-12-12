@@ -25,9 +25,11 @@ class Modules extends React.Component {
   }
 
   componentWillMount() {
-      this.props.modulesFetch();
+    console.log(this.props, 'props before modulesFetch');
+    this.props.modulesFetch();
+    console.log(this.props, 'props after modulesFetch');
 
-      this.createDataSource(this.props);
+    this.createDataSource(this.props);
   }
 
   async componentDidMount() {
@@ -84,7 +86,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    console.log(state, 'mapstatetoprops modules');
     const modules = _.map(state.modules, (val, uid) => {
         return { ...val, uid }; 
     });
