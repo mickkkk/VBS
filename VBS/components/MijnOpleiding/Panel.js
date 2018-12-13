@@ -128,10 +128,8 @@ const styles = StyleSheet.create({
             borderColor: '#C3C1C1',
             display: 'flex',
             flexDirection: 'column',
-            //marginTop: 5,
             marginLeft: 5,
             marginRight: 5,
-            //overflow: 'hidden',
     },
     line: {
         backgroundColor: '#C3C1C1',
@@ -148,9 +146,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: Colors.VBSBlue,
         fontFamily: 'open-sans-bold'
-    },
-    button: {
-
     },
     img: {
         height: 30,

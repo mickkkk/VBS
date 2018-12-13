@@ -5,13 +5,9 @@ import {
   StyleSheet,
   ListView,
   View,
-  ScrollView,
-  Text
 } from 'react-native';
 import { Font, AppLoading } from 'expo';
 import { connect } from 'react-redux';
-
-import Panel from './Panel';
 
 import { cijfersFetch } from '../../actions';
 import CijferListItem from '../CijferListItem';
@@ -70,7 +66,6 @@ renderRow(cijfer) {
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}
-        //keyExtractor={item => item.index}
       />
     </View>
     );
@@ -125,9 +120,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-start',
-        //justifyContent: 'space-between',
         paddingVertical: 20,
-        //paddingHorizontal: 0,
     },
     time: {
         fontSize: 11,
@@ -135,7 +128,6 @@ const styles = StyleSheet.create({
         marginTop: 11,
         fontFamily: 'open-sans-regular',
         color: Colors.VBSBlue,
-        //flexGrow:1,
     },
     title: {
         fontFamily: 'open-sans-bold',
@@ -147,14 +139,11 @@ const styles = StyleSheet.create({
         fontSize: 11,
     },
     module: {
-        //backgroundColor: "green",
-        //flexGrow: 2,
         marginLeft: 12,
         marginRight: 30,
     },
     container: {
         flex: 1,
-        //backgroundColor: 'red',
         paddingTop: 5,
     },
     developmentModeText: {

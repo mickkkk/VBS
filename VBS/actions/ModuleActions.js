@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
 
 import {
     MODULES_FETCH_SUCCESS,
@@ -20,7 +19,6 @@ export const modulesFetch = () => {
 };
 
 export const reactiesFetch = ({ uid }) => {
-    console.log(uid, 'uid reactieFetch');
     return (dispatch) => {
         firebase.database().ref(`/modules/${uid}/reacties/`)
             .on('value', snapshot => {
@@ -37,7 +35,6 @@ export const reactieUpdate = ({ prop, value }) => {
 };
 
 export const reactieCreate = ({ naam, reactie, uid }) => {
-    console.log(reactie, 'reactie '); 
     return (dispatch) => {
          dispatch({ type: REACTIE_CREATE });
          if (reactie !== undefined) {
@@ -60,6 +57,4 @@ export const reactieCreate = ({ naam, reactie, uid }) => {
      dispatch({
          type: REACTIE_CREATE_SUCCESS
      });
-
-     //Actions.refresh({ key: Actions.moduleDetail({ module: this.props.module }) });
  };

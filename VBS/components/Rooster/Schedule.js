@@ -182,8 +182,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         overflow: 'hidden',
-        
-        
     },
     header: {
         backgroundColor: 'white',
@@ -201,9 +199,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-start',
-        //justifyContent: 'space-between',
         paddingVertical: 20,
-        //paddingHorizontal: 0,
     },
     time: {
         fontSize: 11,
@@ -211,7 +207,6 @@ const styles = StyleSheet.create({
         marginTop: 11,
         fontFamily: 'open-sans-regular',
         color: Colors.VBSBlue,
-        //flexGrow:1,
     },
     lesson: {
         fontFamily: 'open-sans-regular',
@@ -230,13 +225,8 @@ const styles = StyleSheet.create({
         fontSize: 11,
         color: Colors.VBSBlue,
         marginTop: 11,
-        //backgroundColor: 'yellow',
-        
-        //marginRight: 12,
     },
     lessonTeacher: {
-        //backgroundColor: "green",
-        //flexGrow: 2,
         marginLeft: 30,
     },
     container: {

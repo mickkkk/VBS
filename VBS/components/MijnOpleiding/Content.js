@@ -1,12 +1,12 @@
 import React from 'react';
-import _ from 'lodash';
 import {
   StyleSheet,
   Text,
   ScrollView,
   View,
   ListView,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Font } from 'expo';
@@ -17,6 +17,9 @@ import Panel from './Panel';
 import Input from '../Input';
 
 import ReactieListItem from '../ReactieListItem';
+import Colors from '../../constants/Colors';
+
+const ArrowReactie = require('../../assets/images/arrowReactie.png');
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
@@ -46,21 +49,17 @@ class Content extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps, 'nextProps');
     this.createDataSource(nextProps.module);
  }
 
   onButtonPress() {
    const { reactie, email } = this.props;
    const { uid } = this.props.module;
-   console.log(uid, 'uid onbtnpress');
 
    const naam = email;
 
    this.props.reactieCreate({ naam, reactie, uid });
    this.props.reactiesFetch({ uid });
-   //console.log(this.props.reacties, 'props after reactiesFetch');
-   //this.createDataSource(this.props.reacties);
  }
 
   createDataSource({ reacties }) {
@@ -103,7 +102,7 @@ class Content extends React.Component {
             />
             <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
             <Text style={styles.textStyle}> 
-                Verstuur
+              <Image style={styles.img} source={ArrowReactie} />
             </Text>
             </TouchableOpacity>
           </View>
@@ -111,7 +110,6 @@ class Content extends React.Component {
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
-            //keyExtractor={item => item.index}
           />
         </Panel>
         <View style={{ marginBottom: 15 }} />
@@ -124,9 +122,13 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flex: 1,
     //alignSelf: 'stretch',
-    backgroundColor: '#F64404',
-    borderRadius: 5,
+    //alignItems: 'center',
+    //flexDirection: 'column',
+    //justifyContent: 'center',
+    backgroundColor: Colors.VBSBlue,
+    borderRadius: 100,
     maxHeight: 30,
+    maxWidth: 30,
     marginTop: 38,
     //width: 30,
     
@@ -139,15 +141,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     //borderColor: '#fff',
     position: 'relative',
+    justifyContent: 'space-between',
     //maxWidth: 269
   }, 
   textStyle: {
-    alignSelf: 'center',
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '600',
-    paddingTop: 10,
-    paddingBottom: 13
+    //alignSelf: 'center',
+    //color: Colors.VBSBlue,
+    //fontSize: 12,
+    //fontWeight: '600',
+    marginTop: 7,
+    marginLeft: 6,
+    paddingBottom: 10,
+    //alignSelf: 'center',
+    justifyContent: 'center',
+    //flexDirection: 'row',
 },
   container: {
     marginBottom: 10,
@@ -164,16 +171,20 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 30,
+    maxWidth: 290,
     borderRadius: 3,
     borderColor: '#b2b2b2',
     borderWidth: 0.5,
+  },
+  img: {
+    width: 20,
+    height: 20,
+
   }
+
 });
 
 const mapStateToProps = ({ modules, auth }) => {
-  //const { uid } = this.props.module;
-  console.log(this.props, 'this.props mapstate content');
-  console.log(modules, 'state modules 44444');
   const { reacties } = modules;
 
   const { reactie } = modules;

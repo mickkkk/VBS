@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  View
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';

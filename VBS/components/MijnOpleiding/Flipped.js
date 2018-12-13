@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import {
-  Platform,
   StyleSheet,
   ListView,
   View,
-  ScrollView,
   TouchableOpacity,
   Text
 } from 'react-native';
@@ -17,7 +15,6 @@ import { Actions } from 'react-native-router-flux';
 import { flippedFetch, flippedCreate } from '../../actions';
 import FlippedListItem from '../FlippedListItem';
 import Colors from '../../constants/Colors';
-import Button from '../Button';
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
@@ -52,12 +49,10 @@ class Flipped extends React.Component {
 
  componentWillReceiveProps(nextProps) {
      this.createDataSource(nextProps);
-     console.log(nextProps, 'this.props nextprops flipped');
  }
 
  onButtonPress() {
     const { uid } = this.props.module;
-    console.log(uid, 'btnPressuid');
 
     Actions.flippedCreate({ uid });
  }
@@ -71,9 +66,7 @@ class Flipped extends React.Component {
  }
  
 renderRow(flipped) {   
-    console.log(flipped, 'props flipped renderRow');
     const { uid } = this.props.module;
-    console.log(uid, 'uid render row');
     return <FlippedListItem flipped={flipped} uid={uid} />;
 }
  
@@ -92,7 +85,6 @@ renderRow(flipped) {
                 style={styles.listview}
                 dataSource={this.dataSource}
                 renderRow={this.renderRow.bind(this)}
-                //keyExtractor={item => item.index}
                 />
         </View>
     );
@@ -101,24 +93,18 @@ renderRow(flipped) {
 
 const styles = StyleSheet.create({
     listview: {
-        //flex: 1,
         marginBottom: 10
     },
     container: {
         flex: 1,
         backgroundColor: '#F4F4F4',
-        //paddingTop: 5,
     },
     buttonStyle: {
         flex: 1,
-        //alignSelf: 'stretch',
-        //backgroundColor: '#F64404',
         alignSelf: 'flex-end',
-        //borderRadius: 5,
         maxHeight: 20,
         marginRight: 10,
         marginBottom: 10,
-        //width: 269,
         
     },
     textStyle: {

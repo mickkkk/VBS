@@ -1,18 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
 import {
-  Platform,
   StyleSheet,
   ListView,
-  View,
-  ScrollView
 } from 'react-native';
 import { Font, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import { modulesFetch } from '../../actions';
 import ModuleListItem from '../ModuleListItem';
-import Colors from '../../constants/Colors';
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
@@ -25,9 +21,7 @@ class Modules extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props, 'props before modulesFetch');
     this.props.modulesFetch();
-    console.log(this.props, 'props after modulesFetch');
 
     this.createDataSource(this.props);
   }
@@ -61,7 +55,6 @@ renderRow(module) {
 }
  
   render() {
-    console.log(this.props, 'props module');
     if (!this.state.fontLoaded) {
         return <AppLoading />;
         }
@@ -71,7 +64,6 @@ renderRow(module) {
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
-            //keyExtractor={item => item.index}
             />
     );
   }
@@ -80,8 +72,6 @@ renderRow(module) {
 const styles = StyleSheet.create({
     listview: {
         flex: 1,
-        //backgroundColor: 'red',
-        //paddingTop: 5,
     }
 });
 

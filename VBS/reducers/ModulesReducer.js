@@ -8,6 +8,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
+    reacties: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
         case REACTIE_CREATE_FAIL:
             return { ...state, error: 'Reactie plaatsen mislukt' };
         case REACTIES_FETCH_SUCCESS:
-            return action.payload;
+            return { ...state, reacties: action.payload };
         default:
             return state;
     }

@@ -3,8 +3,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { flippedUpdate, flippedCreate } from '../../actions';
 
-import Card from '../Card';
-import CardSection from '../CardSection';
 import Input from '../Input';
 import Button from '../Button';
 
