@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
     maxHeight: 30,
     maxWidth: 30,
     marginTop: 38,
+    paddingTop: 3,
+    paddingLeft: 3,
     //width: 30,
     
 },
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     //fontWeight: '600',
     marginTop: 7,
     marginLeft: 6,
-    paddingBottom: 10,
+    paddingBottom: 5,
     //alignSelf: 'center',
     justifyContent: 'center',
     //flexDirection: 'row',
@@ -177,8 +179,10 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   img: {
-    width: 20,
-    height: 20,
+    paddingTop: 5,
+    paddingLeft: 5,
+    width: 15,
+    height: 15,
 
   }
 

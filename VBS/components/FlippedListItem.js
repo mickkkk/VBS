@@ -8,7 +8,7 @@ const Arrow = require('../assets/images/arrow.png');
 
 class FlippedListItem extends Component {
     onRowPress() {
-        Actions.flippedDetail({ flipped: this.props.flipped, uid: this.props.uid });
+        Actions.flippedDetail({ flipped: this.props.flipped, uidModule: this.props.uid });
     }
 
     render() {
@@ -38,9 +38,12 @@ const styles = StyleSheet.create({
         height: 23,
         width: 23,
         position: 'absolute',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        flexDirection: 'row',
         right: 12,
-        top: 20,
-        marginTop: 11,
+        //top: 20,
+        //marginTop: 11,
     },
     line: {
         backgroundColor: '#C3C1C1',

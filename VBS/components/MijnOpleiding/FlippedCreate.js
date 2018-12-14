@@ -12,8 +12,9 @@ import Spinner from '../Spinner';
 class FlippedCreate extends Component {
     onButtonPress() {
         const { inhoud, titel, auteur, beschrijving, uid } = this.props;
+        const reacties = [{ naam: 'Mick', reactie: 'Heel duidelijk artikel, vanuit eigen perspectief' }];
 
-        this.props.flippedCreate({ inhoud, titel, auteur, beschrijving, uid });
+        this.props.flippedCreate({ inhoud, titel, auteur, beschrijving, reacties, uid });
     }
 
     renderError() {
