@@ -6,12 +6,14 @@ import {
   View,
   ListView,
   TouchableOpacity,
-  Image
+  Image,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { reactieUpdate, reactieCreate, reactiesFetch } from '../../actions';
+
 
 import Panel from './Panel';
 import Input from '../Input';
@@ -76,45 +78,50 @@ class Content extends React.Component {
   render() {
     const { introductie, lesstof, geluidsfragment, oefentoetsen } = this.props.module;
     return (
-      <ScrollView style={styles.container}>
-        <Panel title="Introductie">
-          <Text style={styles.body}>{introductie}</Text>
-        </Panel>
-        <Panel title="Lesstof">
-          <Text style={styles.body}>{lesstof}</Text>
-        </Panel>
-        <Panel title="Geluidsfragmenten">
-          <Text style={styles.body}>{geluidsfragment}</Text>
-        </Panel>
-        <Panel title="Oefentoetsen">
-          <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
-        </Panel>
-        <Panel title="Reacties">
-          <View style={styles.reactiesStyle}>
-            <Input
-                placeholder="Typ een bericht..."
-                style={styles.input}
-                placeholderTextColor="#707070"
-                onChangeText={
-                  value => this.props.reactieUpdate({ prop: 'reactie', value })
-                }
-                value={this.props.reactie}
-            />
-            <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
-            <Text style={styles.textStyle}> 
-              <Image style={styles.img} source={ArrowReactie} />
-            </Text>
-            </TouchableOpacity>
-          </View>
-          <ListView
-            enableEmptySections
-            dataSource={this.dataSource}
-            renderRow={this.renderRow}
-            removeClippedSubviews={false}
-          />
-        </Panel>
-        <View style={{ marginBottom: 15 }} />
-      </ScrollView>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      //contentContainerStyle={styles.container}
+      scrollEnabled
+    >
+            <Panel title="Introductie">
+              <Text style={styles.body}>{introductie}</Text>
+            </Panel>
+            <Panel title="Lesstof">
+              <Text style={styles.body}>{lesstof}</Text>
+            </Panel>
+            <Panel title="Geluidsfragmenten">
+              <Text style={styles.body}>{geluidsfragment}</Text>
+            </Panel>
+            <Panel title="Oefentoetsen">
+              <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
+            </Panel>
+            <Panel title="Reacties">
+              <View style={styles.reactiesStyle}>
+                <Input
+                    placeholder="Typ een bericht..."
+                    style={styles.input}
+                    placeholderTextColor="#707070"
+                    onChangeText={
+                      value => this.props.reactieUpdate({ prop: 'reactie', value })
+                    }
+                    value={this.props.reactie}
+                />
+                <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
+                <Text style={styles.textStyle}> 
+                  <Image style={styles.img} source={ArrowReactie} />
+                </Text>
+                </TouchableOpacity>
+              </View>
+              <ListView
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+                removeClippedSubviews={false}
+              />
+            </Panel>
+            <View style={{ marginBottom: 15 }} />
+        </KeyboardAwareScrollView>
     );
   }
 }

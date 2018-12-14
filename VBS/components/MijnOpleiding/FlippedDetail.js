@@ -11,6 +11,7 @@ import {
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { flippedDelete, flippedReactieCreate, flippedReactieUpdate } from '../../actions';
 
 import ReactieListItem from '../ReactieListItem';
@@ -102,7 +103,13 @@ class FlippedDetail extends React.Component {
         </Text>
       </TouchableOpacity>
 
-      <ScrollView style={styles.container}>
+      <KeyboardAwareScrollView
+      style={styles.container}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      //contentContainerStyle={styles.container}
+      scrollEnabled
+    >
+      
         <Panel title="Inhoud">
           <Text style={styles.body}>{inhoud}</Text>
         </Panel>
@@ -137,7 +144,7 @@ class FlippedDetail extends React.Component {
         >
           Wilt u dit artikel verwijderen?
         </Confirm>
-      </ScrollView>  
+        </KeyboardAwareScrollView>  
     </View>
     );
   }
