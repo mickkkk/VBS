@@ -127,6 +127,7 @@ class FlippedDetail extends React.Component {
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
+            removeClippedSubviews={false}
           />
         </Panel>
         <Confirm

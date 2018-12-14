@@ -110,6 +110,7 @@ class Content extends React.Component {
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
+            removeClippedSubviews={false}
           />
         </Panel>
         <View style={{ marginBottom: 15 }} />
