@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, Platform, Alert } from 'react-native';
+import { connect } from 'react-redux';
 
 import { GiftedChat, Bubble, Actions } from 'react-native-gifted-chat';
+
 
 import Fire from '../../Fire';
 import Colors from '../../constants/Colors';
@@ -32,8 +34,9 @@ class Chat extends Component {
 
     get user() {
         // Return our name and our UID for GiftedChat to parse
+        const { email } = this.props;
         return {
-          name: 'Herman',
+          name: email,
           _id: Fire.shared.uid,
           createdAt: new Date(),
           avatar: 'https://placeimg.com/140/140/any',
@@ -107,4 +110,12 @@ class Chat extends Component {
   }
 }
 
-export default Chat;
+const mapStateToProps = ({ auth }) => {
+    const { email } = auth.user.user;
+  
+    return { email };
+   };
+
+export default connect(mapStateToProps, { })(Chat);
+
+//export default Chat;
