@@ -68,7 +68,6 @@ class LoginForm extends Component {
                             value={this.props.email}
                         />
                     </CardSection>
-
                     <CardSection>
                         <Input
                             secureTextEntry
@@ -77,11 +76,8 @@ class LoginForm extends Component {
                             value={this.props.password}
                         />
                     </CardSection>
-
                     {this.renderError()}
-
                     {this.renderButton()}
-                    
                 </Card>
             </ImageBackground>
         );

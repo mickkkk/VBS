@@ -1,8 +1,8 @@
 import React from 'react';
+import _ from 'lodash';
 import {
   StyleSheet,
   Text,
-  ScrollView,
   View,
   ListView,
   TouchableOpacity,
@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { reactieUpdate, reactieCreate, reactiesFetch } from '../../actions';
-
 
 import Panel from './Panel';
 import Input from '../Input';
@@ -26,14 +25,18 @@ const ArrowReactie = require('../../assets/images/arrowReactie.png');
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 
+
 class Content extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { fontLoaded: false };
+      this.state = { 
+        fontLoaded: false,
+       };
     }
 
    componentWillMount() {
-     this.createDataSource(this.props.module);
+    console.log(this.state.reacties, 'state reacties');
+    this.createDataSource(this.props.module);
    }
 
   async componentDidMount() {
@@ -52,8 +55,7 @@ class Content extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps.module);
- }
-
+  }
   onButtonPress() {
    const { reactie, email } = this.props;
    const { uid } = this.props.module;
