@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+//import _ from 'lodash';
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,12 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { Font } from 'expo';
+import { Font, Video, Audio } from 'expo';
 import { Actions } from 'react-native-router-flux';
+import { MaterialIcons } from '@expo/vector-icons';
+//import Video from 'react-native-video';
 import { reactieUpdate, reactieCreate, reactiesFetch } from '../../actions';
+
 
 import Panel from './Panel';
 import Input from '../Input';
@@ -24,6 +27,8 @@ const ArrowReactie = require('../../assets/images/arrowReactie.png');
 
 const OpenSansRegular = require('../../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
+const mp4 = require('../../assets/mp4/sample.mp4');
+const mp3 = require('../../assets/mp3/sound1.mp3');
 
 
 class Content extends React.Component {
@@ -31,7 +36,12 @@ class Content extends React.Component {
       super(props);
       this.state = { 
         fontLoaded: false,
+        mute: false,
+        fullScreen: false,
+        shouldPlay: false,
+        playAudio: false,
        };
+       let audioPlayer1 = null;
     }
 
    componentWillMount() {
@@ -66,6 +76,45 @@ class Content extends React.Component {
    this.props.reactiesFetch({ uid });
  }
 
+  handlePlayAndPause = () => {
+    this.setState(prevState => ({
+      shouldPlay: !prevState.shouldPlay
+    }));
+  }
+
+  async handlePlayAndPauseAudio() {
+    const soundObject = new Audio.Sound();
+    await soundObject.loadAsync(mp3);
+    if (this.state.playAudio) {
+      try {
+        await this.audioPlayer1.pauseAsync();
+        this.setState(prevState => ({
+          playAudio: !prevState.playAudio
+      }));
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+    try {
+      this.audioPlayer1 = soundObject;
+      this.audioPlayer1.playAsync();
+
+      this.setState(prevState => ({
+          playAudio: !prevState.playAudio
+      }));
+        // Your sound is playing!
+      } catch (error) {
+        // An error occurred!
+      }
+    }
+  }
+
+  handleVolume = () => {
+    this.setState(prevState => ({
+      mute: !prevState.mute,
+    }));
+  }
+
   createDataSource({ reacties }) {
     const ds = new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -78,7 +127,7 @@ class Content extends React.Component {
   }
 
   render() {
-    const { introductie, lesstof, geluidsfragment, oefentoetsen } = this.props.module;
+    const { lesstof, oefentoetsen } = this.props.module;
     return (
     <KeyboardAwareScrollView
       style={styles.container}
@@ -87,13 +136,44 @@ class Content extends React.Component {
       scrollEnabled
     >
             <Panel title="Introductie">
-              <Text style={styles.body}>{introductie}</Text>
+              <Video
+                source={mp4}
+                rate={1.0}
+                volume={1.0}
+                isMuted={false}
+                resizeMode="cover"
+                shouldPlay={this.state.shouldPlay}
+                isLooping
+                //style={{ width, height: 180 }}
+                style={{ width: 340, height: 180 }}
+              />
+              <View style={styles.controlBar}> 
+							<MaterialIcons 
+								name={this.state.shouldPlay ? 'pause' : 'play-arrow'} 
+								size={40} 
+								color="white" 
+								onPress={this.handlePlayAndPause} 
+							/>
+              <MaterialIcons 
+								name={this.state.mute ? 'volume-mute' : 'volume-up'}
+								size={30} 
+								color="white" 
+                onPress={this.handleVolume}
+              />
+						</View>
             </Panel>
             <Panel title="Lesstof">
               <Text style={styles.body}>{lesstof}</Text>
             </Panel>
             <Panel title="Geluidsfragmenten">
-              <Text style={styles.body}>{geluidsfragment}</Text>
+              
+                <MaterialIcons 
+                  name={this.state.playAudio ? 'pause' : 'play-arrow'} 
+                  size={40} 
+                  color={Colors.VBSBlue} 
+                  onPress={this.handlePlayAndPauseAudio.bind(this)} 
+                />
+                
             </Panel>
             <Panel title="Oefentoetsen">
               <Text style={styles.body}>{oefentoetsen.oefentoets1.vraag1}</Text>
@@ -109,7 +189,10 @@ class Content extends React.Component {
                     }
                     value={this.props.reactie}
                 />
-                <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonStyle}>
+                <TouchableOpacity 
+                  onPress={this.onButtonPress.bind(this)} 
+                  style={styles.buttonStyle}
+                >
                 <Text style={styles.textStyle}> 
                   <Image style={styles.img} source={ArrowReactie} />
                 </Text>
@@ -129,6 +212,11 @@ class Content extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  audio: {
+    backgroundColor: 'green',
+    width: 20,
+    height: 20
+  },
   buttonStyle: {
     flex: 1,
     //alignSelf: 'stretch',
@@ -193,8 +281,18 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     width: 15,
     height: 15,
-
-  }
+  },
+  controlBar: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    right: 13,
+		height: 45,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	}
 
 });
 
