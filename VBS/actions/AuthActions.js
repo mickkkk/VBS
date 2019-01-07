@@ -45,5 +45,14 @@ const loginUserSuccess = (dispatch, user) => {
         payload: user
     });
 
+    user.user.updateProfile({
+        displayName: 'Bla123',
+        photoURL: '../assets/images/mickVranken.jpg'
+      }).then(() => {
+        // Update successful.
+      }).catch(() => {
+        // An error happened.
+    });
+
     Actions.main();
 };
