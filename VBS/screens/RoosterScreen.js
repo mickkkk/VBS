@@ -10,7 +10,16 @@ import { Font, AppLoading } from 'expo';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from 'react-native-underline-tabbar';
 
-import Schedule from '../components/Rooster/Schedule';
+import Schedule1 from '../components/Rooster/Schedule1';
+import Schedule2 from '../components/Rooster/Schedule2';
+import Schedule3 from '../components/Rooster/Schedule3';
+import Schedule4 from '../components/Rooster/Schedule4';
+import Schedule5 from '../components/Rooster/Schedule5';
+import Schedule6 from '../components/Rooster/Schedule6';
+import Schedule7 from '../components/Rooster/Schedule7';
+import Schedule8 from '../components/Rooster/Schedule8';
+import Schedule9 from '../components/Rooster/Schedule9';
+import Schedule10 from '../components/Rooster/Schedule10';
 import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
@@ -61,16 +70,16 @@ export default class RoosterScreen extends React.Component {
                 tabBarTextStyle={{ fontSize: 18, fontFamily: 'open-sans-regular' }}
               />}
           >
-            <Schedule tabLabel={{ label: '    1    ' }} name="1" />
-            <Schedule tabLabel={{ label: '    2    ' }} name="17" />
-            <Schedule tabLabel={{ label: '    3    ' }} label="3" />
-            <Schedule tabLabel={{ label: '    4    ' }} label="4" />
-            <Schedule tabLabel={{ label: '    5    ' }} label="5" />
-            <Schedule tabLabel={{ label: '    6    ' }} label="6" />
-            <Schedule tabLabel={{ label: '    7    ' }} label="7" />
-            <Schedule tabLabel={{ label: '    8    ' }} label="8" />
-            <Schedule tabLabel={{ label: '    9    ' }} label="9" />
-            <Schedule tabLabel={{ label: '    10   ' }} label="10" />
+            <Schedule1 tabLabel={{ label: '    1    ' }} name="1" />
+            <Schedule2 tabLabel={{ label: '    2    ' }} name="17" />
+            <Schedule3 tabLabel={{ label: '    3    ' }} label="3" />
+            <Schedule4 tabLabel={{ label: '    4    ' }} label="4" />
+            <Schedule5 tabLabel={{ label: '    5    ' }} label="5" />
+            <Schedule6 tabLabel={{ label: '    6    ' }} label="6" />
+            <Schedule7 tabLabel={{ label: '    7    ' }} label="7" />
+            <Schedule8 tabLabel={{ label: '    8    ' }} label="8" />
+            <Schedule9 tabLabel={{ label: '    9    ' }} label="9" />
+            <Schedule10 tabLabel={{ label: '    10   ' }} label="10" />
           </ScrollableTabView>
         </ScrollView>
       </View>

@@ -15,7 +15,7 @@ const OpenSansSemiBold = require('../../assets/fonts/OpenSans-SemiBold.ttf');
 //   height: 0,
 //   width: Dimensions.get('window').width,
 // };
-export default class Schedule extends React.Component {
+export default class Schedule10 extends React.Component {
   state = {
     fontLoaded: false,
   };
@@ -38,7 +38,7 @@ export default class Schedule extends React.Component {
             {/* <Text>Week {this.props.name}!</Text> */}
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Maandag 10 September</Text>
+                    <Text style={styles.headerText}>Maandag 12 November</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.item}>
@@ -62,7 +62,7 @@ export default class Schedule extends React.Component {
 
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Dinsdag 11 September</Text>
+                    <Text style={styles.headerText}>Dinsdag 13 November</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.item}>
@@ -86,7 +86,7 @@ export default class Schedule extends React.Component {
 
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Woensdag 12 September</Text>
+                    <Text style={styles.headerText}>Woensdag 14 November</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.item}>
@@ -110,7 +110,7 @@ export default class Schedule extends React.Component {
 
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Donderdag 13 September</Text>
+                    <Text style={styles.headerText}>Donderdag 15 November</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.item}>
@@ -134,7 +134,7 @@ export default class Schedule extends React.Component {
 
             <View style={styles.day}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Vrijdag 14 September</Text>
+                    <Text style={styles.headerText}>Vrijdag 16 November</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.item}>
