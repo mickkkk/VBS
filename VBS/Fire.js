@@ -23,7 +23,7 @@ class Fire {
   onAuthStateChanged = user => {
     if (!user) {
       try {
-        firebase.auth().signInAnonymously();
+        //firebase.auth().signInAnonymously();
       } catch ({ message }) {
         Alert(message);
         //alert(message);
