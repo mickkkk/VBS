@@ -45,9 +45,20 @@ const loginUserSuccess = (dispatch, user) => {
         payload: user
     });
 
+    let nameUser = '';
+    switch (user.user.email) {
+        case 'iris@vbs.com':
+            nameUser = 'Iris';
+            break;
+        case 'freek@vbs.com':
+            nameUser = 'Freek';
+            break;
+        default:
+            nameUser = 'Gebruikersnaam';
+    }
+
     user.user.updateProfile({
-        displayName: 'Bla123',
-        photoURL: '../assets/images/mickVranken.jpg'
+        displayName: nameUser,
       }).then(() => {
         // Update successful.
       }).catch(() => {

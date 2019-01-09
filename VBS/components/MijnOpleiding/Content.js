@@ -41,7 +41,7 @@ class Content extends React.Component {
         shouldPlay: false,
         playAudio: false,
        };
-       let audioPlayer1 = null;
+       //const audioPlayer1 = null;
     }
 
    componentWillMount() {
@@ -298,13 +298,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ modules, auth }) => {
   const { reacties } = modules;
-
   const { reactie } = modules;
-
   const { email } = auth.user.user;
 
   return { reactie, reacties, email };
  };
 
-//export default Content;
 export default connect(mapStateToProps, { reactiesFetch, reactieUpdate, reactieCreate })(Content);
