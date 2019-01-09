@@ -6,7 +6,8 @@ import {
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    LOGIN_USER
+    LOGIN_USER,
+    LOGOUT_USER
 } from './types';
 
 export const emailChanged = (text) => {
@@ -20,6 +21,16 @@ export const passwordChanged = (text) => {
     return {
         type: PASSWORD_CHANGED,
         payload: text
+    };
+};
+
+export const logoutUser = () => {
+    return (dispatch) => {
+        dispatch({ type: LOGOUT_USER });
+
+        firebase.auth().signOut();
+
+        Actions.auth();
     };
 };
 
@@ -48,13 +59,13 @@ const loginUserSuccess = (dispatch, user) => {
     let nameUser = '';
     switch (user.user.email) {
         case 'iris@vbs.com':
-            nameUser = 'Iris';
+            nameUser = 'Iris Jansen';
             break;
         case 'freek@vbs.com':
-            nameUser = 'Freek';
+            nameUser = 'Freek van der Ven';
             break;
         default:
-            nameUser = 'Gebruikersnaam';
+            nameUser = 'Voornaam Achternaam';
     }
 
     user.user.updateProfile({

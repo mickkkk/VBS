@@ -1,23 +1,22 @@
 /* eslint-disable global-require */
 import React from 'react';
 import { 
-  ScrollView, 
   StyleSheet, 
   Font, 
   View,
   Text,
-  Image 
+  Image,
+  TouchableOpacity 
 } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import Colors from '../constants/Colors';
 
-import { reactieCreate } from '../actions';
+import { logoutUser, reactieCreate } from '../actions';
 
 const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
-//const PhotoURL = require('../assets/images/mickVranken.jpg');
 
 class AccountScreen extends React.Component {
   constructor(props) {
@@ -54,13 +53,15 @@ class AccountScreen extends React.Component {
     }
   }
 
+  onPressLogout() {
+    this.props.logoutUser();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Header headerText="Account" />
         <View style={styles.container}>
-          {/* Go ahead and delete ExpoLinksView and replace it with your
-            * content, we just wanted to provide you with some helpful links */}
           <View style={styles.info}>
             <View style={styles.pic}>
               <Image source={this.state.urlke} style={styles.img} />
@@ -70,6 +71,13 @@ class AccountScreen extends React.Component {
               <Text style={styles.email}>{this.props.email}</Text>
             </View>
           </View>
+          
+            <TouchableOpacity onPress={this.onPressLogout.bind(this)} style={styles.buttonStyle}>
+              <Text style={styles.textStyleBtn}> 
+                UITLOGGEN 
+              </Text>
+            </TouchableOpacity>
+          
         </View>
       </View>
     );
@@ -79,8 +87,27 @@ class AccountScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 0,
     backgroundColor: '#F4F4F4',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  buttonStyle: {
+    flex: 1,
+    backgroundColor: Colors.VBSBlue,
+    maxHeight: 38,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    
+    position: 'relative',
+  },
+  textStyleBtn: {
+    alignSelf: 'center',
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600',
+    paddingTop: 10,
+    paddingBottom: 13
   },
   rooster: {
     fontSize: 20, 
@@ -96,7 +123,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     flexDirection: 'row',
-    //left: 12,
     borderRadius: 35,
     borderWidth: 1,
     borderColor: Colors.VBSBlue,
@@ -105,7 +131,6 @@ const styles = StyleSheet.create({
     flex: 1,
     maxWidth: 105,
     justifyContent: 'center',
-    //flexdirection: 'column',
   },
   infoText: {
     flex: 2,
@@ -117,14 +142,16 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-regular'
   },
   info: {
+    //backgroundColor: 'red',
     backgroundColor: '#fff',
-    //padding: 5,
     marginTop: 10,
-    left: 5,
-    right: 50,
+    marginLeft: 5,
+    marginRight: 5,
     borderRadius: 5,
     height: 90,
     flexDirection: 'row',
+    borderWidth: 0.3,
+    borderColor: '#C3C1C1',
   },
   email: {
     fontSize: 12,
@@ -141,5 +168,5 @@ const mapStateToProps = ({ auth }) => {
   return { email, displayName, photoURL, user };
  };
 
-export default connect(mapStateToProps, { reactieCreate })(AccountScreen);
+export default connect(mapStateToProps, { reactieCreate, logoutUser })(AccountScreen);
 /* eslint-enable global-require */

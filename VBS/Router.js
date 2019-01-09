@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Image } from 'react-native';
-import { Scene, Router, Stack, Actions } from 'react-native-router-flux';
+import { Scene, Router, Stack } from 'react-native-router-flux';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import LoginForm from './components/LoginForm';
