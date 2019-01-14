@@ -20,6 +20,8 @@ import { logoutUser, reactieCreate } from '../actions';
 const OpenSansRegular = require('../assets/fonts/OpenSans-Regular.ttf');
 const OpenSansSemiBold = require('../assets/fonts/OpenSans-SemiBold.ttf');
 
+const Arrow = require('../assets/images/arrow.png');
+
 class AccountScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -59,6 +61,10 @@ class AccountScreen extends React.Component {
     Actions.userInfo();
   }
 
+  onPressWachtwoord() {
+    Actions.wachtwoordScreen();
+  }
+
   onPressLogout() {
     this.props.logoutUser();
   }
@@ -68,6 +74,7 @@ class AccountScreen extends React.Component {
       <View style={styles.container}>
         <Header headerText="Account" />
         <View style={styles.container}>
+          <View>
           <View style={styles.info}>
             <View style={styles.pic}>
               <Image source={this.state.urlke} style={styles.img} />
@@ -81,6 +88,38 @@ class AccountScreen extends React.Component {
                 <Text style={styles.email}>{this.props.email}</Text>
               </View>
             </TouchableWithoutFeedback>
+            </View>
+            <View style={styles.instellingen}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>Instellingen</Text>
+                </View>
+                <View style={styles.line} />
+                <TouchableWithoutFeedback 
+                onPress={this.onPressWachtwoord.bind(this)} 
+                underlayColor="white"
+                >
+                <View style={styles.item}>
+                    <Text style={styles.teacher}>Wachtwoord wijzigen</Text>
+                    <Image style={styles.arrow} source={Arrow} />
+                </View>
+              </TouchableWithoutFeedback>
+                
+                <View style={styles.line2} />
+                <View style={styles.item}>
+                    <Text style={styles.teacher}>Adressen</Text>
+                    <Image style={styles.arrow} source={Arrow} />
+                </View>
+                <View style={styles.line2} />
+                <View style={styles.item}>
+                    <Text style={styles.teacher}>Beschikbaarheid</Text>
+                    <Image style={styles.arrow} source={Arrow} />
+                </View>
+                <View style={styles.line2} />
+                <View style={styles.item}>
+                    <Text style={styles.teacher}>Notificaties</Text>
+                    <Text style={styles.toggle}>AAN</Text>
+                </View>
+            </View>
           </View>
           <TouchableOpacity onPress={this.onPressLogout.bind(this)} style={styles.buttonStyle}>
             <Text style={styles.textStyleBtn}> 
@@ -111,6 +150,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
   },
+  buttonText: {
+    fontFamily: 'open-sans-regular',
+    fontSize: 14,
+  },
+  instellingen: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    borderWidth: 0.5,
+    borderColor: '#C3C1C1',
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    overflow: 'hidden',
+  },
+  line: {
+    backgroundColor: '#C3C1C1',
+    height: 0.5,
+  },
+  line2: {
+    backgroundColor: '#C3C1C1',
+    height: 0.5,
+    marginHorizontal: 12,
+  },
   textStyleBtn: {
     alignSelf: 'center',
     color: '#fff',
@@ -123,6 +187,25 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     color: Colors.VBSBlue,
     textAlign: 'center',
+  },
+  arrow: {
+    height: 23,
+    width: 23,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    right: 12,
+  },
+  toggle: {
+    height: 23,
+    //width: 23,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    right: 12,
+    color: Colors.VBSBlue
   },
   img: {
     height: 70,
@@ -166,6 +249,25 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontFamily: 'open-sans-regular'
   },
+  header: {
+    backgroundColor: 'white',
+    paddingVertical: 23.5,
+    paddingLeft: 12,
+  },
+  headerText: {
+      color: Colors.VBSBlue,
+      fontWeight: 'bold',
+      fontSize: 14,
+      fontFamily: 'open-sans-bold',
+  },
+  item: {
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingVertical: 24,
+    marginLeft: 12,
+},
 });
 
 const mapStateToProps = ({ auth }) => {

@@ -13,6 +13,7 @@ import FlippedDetail from './components/MijnOpleiding/FlippedDetail';
 import FlippedCreate from './components/MijnOpleiding/FlippedCreate';
 import AccountScreen from './screens/AccountScreen';
 import UserInfo from './components/Account/UserInfo';
+import WachtwoordScreen from './components/Account/WachtwoordScreen';
 
 import Colors from './constants/Colors';
 import TabBarIcon from './components/TabBarIcon';
@@ -69,6 +70,7 @@ const RouterComponent = () => {
                         <Scene 
                             key="chat" 
                             component={Chat} 
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -140 }}
                             title="Klas N21"
                             backButtonTintColor={Colors.VBSBlue}
                             backButtonTextStyle={{ }}
@@ -104,7 +106,7 @@ const RouterComponent = () => {
                         <Scene 
                             //rightTitle="Filter"
                             //onRight={() => { console.log('right title tapped') }}
-                            key="modules" 
+                            key="modules"
                             component={MijnOpleidingScreen}
                             hideNavBar
                         />
@@ -113,6 +115,7 @@ const RouterComponent = () => {
                             //onRight={() => { Actions.flippedCreate(); }}
                             key="moduleDetail" 
                             component={ModuleDetail} 
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -40 }}
                             title="Detail"
                             backButtonTintColor={Colors.VBSBlue}
                             headerBackTitle={'res'}
@@ -122,6 +125,7 @@ const RouterComponent = () => {
                         <Scene 
                             key="flippedDetail" 
                             component={FlippedDetail} 
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -80 }}
                             title="Detail"
                             backButtonTintColor={Colors.VBSBlue}
                             headerBackTitle={'res'}
@@ -131,6 +135,7 @@ const RouterComponent = () => {
                         <Scene 
                             key="flippedCreate" 
                             component={FlippedCreate} 
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -80 }}
                             title="Voeg artikel toe"
                             backButtonTintColor={Colors.VBSBlue}
                             headerBackTitle={'res'}
@@ -169,7 +174,18 @@ const RouterComponent = () => {
                         <Scene 
                             key="userInfo" 
                             component={UserInfo} 
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -80 }}
                             title="Gebruikersgegevens"
+                            backButtonTintColor={Colors.VBSBlue}
+                            headerBackTitle={'res'}
+                            navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            backButtonTextStyle={{ }}
+                        />
+                        <Scene 
+                            key="wachtwoordScreen" 
+                            component={WachtwoordScreen}
+                            titleStyle={{ color: Colors.VBSBlue, fontFamily: 'open-sans-regular', fontSize: 20, marginLeft: -80 }}
+                            title="Wachtwoord wijzigen"
                             backButtonTintColor={Colors.VBSBlue}
                             headerBackTitle={'res'}
                             navigationBarStyle={{ borderBottomColor: 'transparent' }}
