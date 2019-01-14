@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
@@ -72,7 +73,11 @@ class UserInfo extends React.Component {
   
   render() {
     return (
-      <View style={styles.container}>
+    <KeyboardAvoidingView 
+        style={styles.container}
+        behavior="padding"
+        enabled
+    >
         <View style={styles.box}>
             <View style={styles.row}>
                 <Text style={styles.label}>Naam</Text>
@@ -96,7 +101,7 @@ class UserInfo extends React.Component {
             </View>
         </View>
         {this.renderButton()}
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
