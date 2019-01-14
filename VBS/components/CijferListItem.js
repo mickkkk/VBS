@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     day: {
         backgroundColor: 'white',
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 0.5,
         borderColor: '#C3C1C1',
         display: 'flex',

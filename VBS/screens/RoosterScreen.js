@@ -52,13 +52,7 @@ export default class RoosterScreen extends React.Component {
       <View style={styles.container}>
         <Header headerText="Rooster" />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Text 
-            style={{ 
-              fontSize: 14, 
-              fontFamily: 'open-sans-regular', 
-              marginLeft: 23 
-            }}
-          >Week</Text>
+          <Text style={styles.kop}>Week</Text>
           <ScrollableTabView
               tabBarActiveTextColor={Colors.VBSBlue}
               tabBarUnderlineStyle={'red'}
@@ -90,6 +84,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  kop: {
+    fontSize: 14, 
+    fontFamily: 'open-sans-regular', 
+    marginLeft: 14,
   },
   developmentModeText: {
     marginBottom: 20,
