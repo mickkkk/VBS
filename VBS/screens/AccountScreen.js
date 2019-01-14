@@ -6,9 +6,11 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity 
+  TouchableOpacity,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import Header from '../components/Header';
 import Colors from '../constants/Colors';
@@ -53,6 +55,10 @@ class AccountScreen extends React.Component {
     }
   }
 
+  onInfoPress() {
+    Actions.userInfo();
+  }
+
   onPressLogout() {
     this.props.logoutUser();
   }
@@ -66,18 +72,21 @@ class AccountScreen extends React.Component {
             <View style={styles.pic}>
               <Image source={this.state.urlke} style={styles.img} />
             </View>
-            <View style={styles.infoText}>
-              <Text style={styles.name}>{this.props.displayName}</Text>
-              <Text style={styles.email}>{this.props.email}</Text>
-            </View>
+            <TouchableWithoutFeedback 
+              onPress={this.onInfoPress.bind(this)} 
+              underlayColor="white"
+            >
+              <View style={styles.infoText}>
+                <Text style={styles.name}>{this.props.displayName}</Text>
+                <Text style={styles.email}>{this.props.email}</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
-          
-            <TouchableOpacity onPress={this.onPressLogout.bind(this)} style={styles.buttonStyle}>
-              <Text style={styles.textStyleBtn}> 
-                UITLOGGEN 
-              </Text>
-            </TouchableOpacity>
-          
+          <TouchableOpacity onPress={this.onPressLogout.bind(this)} style={styles.buttonStyle}>
+            <Text style={styles.textStyleBtn}> 
+              UITLOGGEN 
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -98,16 +107,15 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    
     position: 'relative',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   textStyleBtn: {
     alignSelf: 'center',
     color: '#fff',
-    fontSize: 12,
-    fontWeight: '600',
-    paddingTop: 10,
-    paddingBottom: 13
+    fontSize: 17,
+    fontFamily: 'open-sans-regular',
   },
   rooster: {
     fontSize: 20, 
@@ -142,12 +150,12 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-regular'
   },
   info: {
-    //backgroundColor: 'red',
     backgroundColor: '#fff',
     marginTop: 10,
     marginLeft: 5,
     marginRight: 5,
     borderRadius: 5,
+    paddingLeft: -5,
     height: 90,
     flexDirection: 'row',
     borderWidth: 0.3,
@@ -161,11 +169,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-  const { email, displayName, photoURL } = auth.user.user;
+  const { email, displayName } = auth.user.user;
 
   const { user } = auth.user;
 
-  return { email, displayName, photoURL, user };
+  return { email, displayName, user };
  };
 
 export default connect(mapStateToProps, { reactieCreate, logoutUser })(AccountScreen);

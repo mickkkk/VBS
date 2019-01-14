@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Image } from 'react-native';
-import { Scene, Router, Stack } from 'react-native-router-flux';
+import { Scene, Router, Stack, Actions } from 'react-native-router-flux';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import LoginForm from './components/LoginForm';
@@ -12,10 +12,10 @@ import ModuleDetail from './components/MijnOpleiding/ModuleDetail';
 import FlippedDetail from './components/MijnOpleiding/FlippedDetail';
 import FlippedCreate from './components/MijnOpleiding/FlippedCreate';
 import AccountScreen from './screens/AccountScreen';
+import UserInfo from './components/Account/UserInfo';
 
 import Colors from './constants/Colors';
 import TabBarIcon from './components/TabBarIcon';
-//import { Actions } from 'react-native-gifted-chat';
 
 const VBSLogo = require('./assets/images/vbs.png');
 const VBSLogoUnfocused = require('./assets/images/vbs_unfocused.png');
@@ -138,10 +138,10 @@ const RouterComponent = () => {
                             backButtonTextStyle={{ }}
                         />
                     </Stack>
-                    <Scene 
+
+                    <Stack 
                         key="account" 
-                        component={AccountScreen} 
-                        hideNavBar title="Account" 
+                        title="Account"
                         icon={
                             ({ focused }) => (
                                 <MaterialCommunityIcons
@@ -156,7 +156,26 @@ const RouterComponent = () => {
                                 />
                             )
                         }
-                    />
+                    >
+                        <Scene 
+                            key="accountScreen"
+                            component={AccountScreen}
+                            hideNavBar 
+                            //backButtonTintColor={Colors.VBSBlue}
+                            //headerBackTitle={'res'}
+                            //navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            //backButtonTextStyle={{ }}
+                        />
+                        <Scene 
+                            key="userInfo" 
+                            component={UserInfo} 
+                            title="Gebruikersgegevens"
+                            backButtonTintColor={Colors.VBSBlue}
+                            headerBackTitle={'res'}
+                            navigationBarStyle={{ borderBottomColor: 'transparent' }}
+                            backButtonTextStyle={{ }}
+                        />
+                    </Stack>
                 </Stack>
             </Stack>
         </Router>

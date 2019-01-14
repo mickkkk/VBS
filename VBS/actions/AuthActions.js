@@ -7,7 +7,8 @@ import {
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOGIN_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    //UPDATE_USER
 } from './types';
 
 export const emailChanged = (text) => {
@@ -34,6 +35,15 @@ export const logoutUser = () => {
     };
 };
 
+//  export const updateUser = (user) => {
+//      return (dispatch) => {
+//         dispatch({ 
+//             type: UPDATE_USER,
+//             payload: user
+//         });
+//      };
+//  };
+
 export const loginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER });
@@ -54,26 +64,6 @@ const loginUserSuccess = (dispatch, user) => {
     dispatch({
         type: LOGIN_USER_SUCCESS,
         payload: user
-    });
-
-    let nameUser = '';
-    switch (user.user.email) {
-        case 'iris@vbs.com':
-            nameUser = 'Iris Jansen';
-            break;
-        case 'freek@vbs.com':
-            nameUser = 'Freek van der Ven';
-            break;
-        default:
-            nameUser = 'Voornaam Achternaam';
-    }
-
-    user.user.updateProfile({
-        displayName: nameUser,
-      }).then(() => {
-        // Update successful.
-      }).catch(() => {
-        // An error happened.
     });
 
     Actions.main();

@@ -21,7 +21,6 @@ const styles = {
         maxHeight: 35,
         marginTop: 38,
         width: 269,
-        
     },
     textStyle: {
         alignSelf: 'center',
