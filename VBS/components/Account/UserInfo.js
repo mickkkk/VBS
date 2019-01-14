@@ -46,7 +46,13 @@ class UserInfo extends React.Component {
     userFirebase.updateProfile({
         displayName: this.state.name
     }).then(() => {
-        Actions.accountScreen();
+        if (this.state.emailUser !== this.props.email || '') {
+            userFirebase.updateEmail(this.state.emailUser).then(() => {
+                Actions.accountScreen();
+            });
+        } else {
+            Actions.accountScreen();
+        }
     });
 }
 
