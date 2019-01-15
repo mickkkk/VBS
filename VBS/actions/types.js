@@ -25,3 +25,4 @@ export const FLIPPED_REACTIE_CREATE_SUCCESS = 'flipped_reactie_create_success';
 export const FLIPPED_REACTIE_CREATE_FAIL = 'flipped_reactie_create_fail';
 export const FLIPPED_REACTIES_FETCH_SUCCESS = 'flipped_reacties_fetch_success';
 export const FLIPPED_REACTIE_UPDATE = 'flipped_reactie_update';
+export const FLIPPED_LIKE_UPDATE = 'flipped_like_update';

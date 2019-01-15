@@ -10,7 +10,8 @@ import {
     FLIPPED_REACTIE_CREATE,
     FLIPPED_REACTIE_CREATE_FAIL,
     FLIPPED_REACTIE_CREATE_SUCCESS,
-    FLIPPED_REACTIE_UPDATE
+    FLIPPED_REACTIE_UPDATE,
+    FLIPPED_LIKE_UPDATE
 } from './types';
 
 export const flippedUpdate = ({ prop, value }) => {
@@ -20,13 +21,13 @@ export const flippedUpdate = ({ prop, value }) => {
     };
 };
 
-export const flippedCreate = ({ inhoud, titel, auteur, beschrijving, reacties, uid }) => {
+export const flippedCreate = ({ inhoud, titel, auteur, beschrijving, reacties, liked, uid }) => {
     return (dispatch) => {
         dispatch({ type: FLIPPED_CREATE });
 
         if (inhoud && titel && auteur && beschrijving !== undefined) {
             firebase.database().ref(`/modules/${uid}/flipped/`)
-            .push({ inhoud, titel, auteur, beschrijving, reacties })
+            .push({ inhoud, titel, auteur, beschrijving, reacties, liked })
             .then(() => flippedCreateSuccess(dispatch));
         } else {
             flippedCreateFail(dispatch);
@@ -86,6 +87,30 @@ export const flippedReactieUpdate = ({ prop, value }) => {
     return {
         type: FLIPPED_REACTIE_UPDATE,
         payload: { prop, value }
+    };
+};
+
+// export const flippedReactieCreate = ({ naam, reactie, uidModule, uid }) => {
+//     return (dispatch) => {
+//          dispatch({ type: FLIPPED_REACTIE_CREATE });
+//          if (reactie !== undefined) {
+//              firebase.database().ref(`/modules/${uidModule}/flipped/${uid}/reacties/`)
+//              .push({ naam, reactie })
+//              .then(() => flippedReactieCreateSuccess(dispatch));
+//          } else {
+//              flippedReactieCreateFail(dispatch);
+//          }
+//      };
+//  };
+
+export const flippedLikeUpdate = ({ uidModule, uidFlipped, val, isLiked }) => {
+    return (dispatch) => {
+        dispatch({
+            type: FLIPPED_LIKE_UPDATE,
+            payload: isLiked
+        });
+        firebase.database().ref(`/modules/${uidModule}/flipped/${uidFlipped}`)
+        .update({ liked: val });
     };
 };
 

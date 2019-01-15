@@ -8,7 +8,8 @@ import {
     FLIPPED_REACTIE_CREATE_SUCCESS,
     FLIPPED_REACTIE_CREATE_FAIL,
     FLIPPED_REACTIES_FETCH_SUCCESS,
-    FLIPPED_REACTIE_UPDATE
+    FLIPPED_REACTIE_UPDATE,
+    FLIPPED_LIKE_UPDATE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
     auteur: '',
     beschrijving: '',
     inhoud: '',
+    liked: false,
     reacties: [],
 };
 
@@ -41,6 +43,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, error: 'Reactie plaatsen mislukt' };
         case FLIPPED_REACTIES_FETCH_SUCCESS:
             return { ...state, reacties: action.payload };
+        case FLIPPED_LIKE_UPDATE:
+            return { ...state, liked: action.payload };
         default:
             return state;
     }
