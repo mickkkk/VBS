@@ -231,7 +231,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    console.log(state, 'mapstatetoprops cijfers');
     const cijfers = _.map(state.cijfers, (val, uid) => {
         return { ...val, uid }; 
     });

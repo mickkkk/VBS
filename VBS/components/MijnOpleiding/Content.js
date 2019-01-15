@@ -45,7 +45,6 @@ class Content extends React.Component {
     }
 
    componentWillMount() {
-    console.log(this.state.reacties, 'state reacties');
     this.createDataSource(this.props.module);
    }
 

@@ -15,7 +15,6 @@ import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import Colors from '../../constants/Colors';
 import { updateUser } from '../../actions';
 import Spinner from '../Spinner';
 
@@ -69,26 +68,21 @@ class WachtwoordScreen extends React.Component {
       }
   }
 
-  onButtonPress() {
-    console.log(this.state.huidig, this.state.nieuw, this.state.herhaal);
-    
+  onButtonPress() {    
     this.reauthenticate().then(() => {
         const userFirebase = firebase.auth().currentUser;
         if (this.state.nieuw === this.state.herhaal) {
             userFirebase.updatePassword(this.state.nieuw).then(() => {
-                     console.log('Password gewijzigd!');
                      Alert.alert(
                          'Het is gelukt!',
                          'Je wachtwoord is gewijzigd',
                          [
                              { text: 'Ok', onPress: () => Actions.accountScreen() },
                          ]);
-                     //Actions.accountScreen();
                  }).catch((error) => { 
                     console.log(error); 
                 });
         } else {
-            console.log('nieuw wachtwoord komt niet overeen');
             Alert.alert(
                 'Oops!',
                 'Het veld `Nieuw wachtwoord`en `Herhaal nieuw wachtwoord` komen niet overeen.',

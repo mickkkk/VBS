@@ -13,7 +13,6 @@ import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import Colors from '../../constants/Colors';
 import { updateUser } from '../../actions';
 import Spinner from '../Spinner';
 
@@ -44,14 +43,11 @@ class UserInfo extends React.Component {
 
   onButtonPress() {
     const userFirebase = firebase.auth().currentUser;
-    console.log(this.state.name, this.state.emailUser, this.props.user);
     userFirebase.updateProfile({
         displayName: this.state.name
     }).then(() => {
-        console.log('gebruikersnaam gewijzigd!');
         if (this.state.emailUser !== this.props.email || '') {
             userFirebase.updateEmail(this.state.emailUser).then(() => {
-                console.log('email gewijzigd!');
                 Alert.alert(
                     'Het is gelukt!',
                     'Je gegevens zijn opgeslagen',

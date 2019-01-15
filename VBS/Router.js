@@ -104,8 +104,6 @@ const RouterComponent = () => {
                         }
                     >
                         <Scene 
-                            //rightTitle="Filter"
-                            //onRight={() => { console.log('right title tapped') }}
                             key="modules"
                             component={MijnOpleidingScreen}
                             hideNavBar
