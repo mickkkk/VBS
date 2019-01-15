@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from 'react-native';
 import { Font } from 'expo';
 import { Actions } from 'react-native-router-flux';
@@ -47,12 +48,24 @@ class UserInfo extends React.Component {
     userFirebase.updateProfile({
         displayName: this.state.name
     }).then(() => {
+        console.log('gebruikersnaam gewijzigd!');
         if (this.state.emailUser !== this.props.email || '') {
             userFirebase.updateEmail(this.state.emailUser).then(() => {
-                Actions.accountScreen();
+                console.log('email gewijzigd!');
+                Alert.alert(
+                    'Het is gelukt!',
+                    'Je gegevens zijn opgeslagen',
+                    [
+                        { text: 'Ok', onPress: () => Actions.accountScreen() },
+                    ]);
             });
         } else {
-            Actions.accountScreen();
+            Alert.alert(
+                'Het is gelukt!',
+                'Je gebruikersnaam is opgeslagen',
+                [
+                    { text: 'Ok', onPress: () => Actions.accountScreen() },
+                ]);
         }
     });
 }

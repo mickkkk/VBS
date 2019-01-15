@@ -96,15 +96,22 @@ class WachtwoordScreen extends React.Component {
                     { text: 'Ok' },
                 ]);
         }
+    }).catch(() => {
+        Alert.alert(
+            'Oops!',
+            'Je huidig wachtwoord is onjuist',
+            [
+                { text: 'Ok' },
+            ]);
     });
 }
 
-reauthenticate = () => {
-    const user = firebase.auth().currentUser;
-    const cred = firebase.auth.EmailAuthProvider.credential(
+    reauthenticate = () => {
+        const user = firebase.auth().currentUser;
+        const cred = firebase.auth.EmailAuthProvider.credential(
         this.props.email, this.state.huidig);
-    return user.reauthenticateAndRetrieveDataWithCredential(cred);
-  }
+        return user.reauthenticateAndRetrieveDataWithCredential(cred);
+    }
 
   renderButton() {
     if (this.props.loading) {
