@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import { View, Platform, Alert } from 'react-native';
 import { connect } from 'react-redux';
@@ -15,11 +16,27 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: [],
+            urlke: ''
         };
         this.renderCustomActions = this.renderCustomActions.bind(this);
         this.renderBubble = this.renderBubble.bind(this);
     }
+
+    async componentWillMount() {
+        switch (this.props.email) {
+          case 'iris@vbs.com':
+            this.setState({ urlke: require('../../assets/images/accountIris.png') });
+            break;
+          case 'freek@vbs.com':
+            this.setState({ urlke: require('../../assets/images/accountFreek.png') });
+            break;
+          default:
+            this.setState({ urlke: require('../../assets/images/mickVranken.jpg') });
+            break;
+        }
+      }
+    
     
     componentDidMount() {
     Fire.shared.on(message =>
@@ -39,7 +56,7 @@ class Chat extends Component {
           name: email,
           _id: Fire.shared.uid,
           createdAt: new Date(),
-          avatar: 'https://placeimg.com/140/140/any',
+          avatar: this.state.urlke,
         };
     }
 
@@ -117,5 +134,4 @@ const mapStateToProps = ({ auth }) => {
    };
 
 export default connect(mapStateToProps, { })(Chat);
-
-//export default Chat;
+/* eslint-enable global-require */
