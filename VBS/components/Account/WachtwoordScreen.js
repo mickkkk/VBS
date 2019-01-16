@@ -255,7 +255,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         flexDirection: 'row',
         right: 12,
-        backgroundColor: 'red'
     },
     body: {
       fontSize: 11,
